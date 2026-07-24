@@ -3,13 +3,13 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
 import nicoImg from "@/assets/nico-elections.jpeg";
 import nicoFamilyHoliday from "@/assets/nico-family-holiday.png";
-import nicoPugEventFlyer from "@/assets/nico-pug-event-flyer.jpg";
+import nicoCommunity from "@/assets/nico-community.jpeg";
 import ScrollReveal from "./ScrollReveal";
 
 const heroImages = [
   { src: nicoImg, alt: "Nico Sanders at the Maryland State Board of Elections", href: null },
   { src: nicoFamilyHoliday, alt: "Nico Sanders with his family during the holidays", href: null },
-  { src: nicoPugEventFlyer, alt: "Raising the Bar for District 11A — fundraiser at The Pug, June 2", href: "/nico-pug-event" },
+  { src: nicoCommunity, alt: "Nico Sanders with community supporters", href: null },
 ];
 
 const HeroSection = () => {
@@ -41,7 +41,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
           
             <span className="inline-block text-xs uppercase tracking-[0.3em] text-primary font-medium mb-6 border border-primary/20 rounded-full px-4 py-1.5">
-              Maryland House of Delegates
+              District 11A Community Hub
             </span>
           </motion.div>
 
@@ -50,10 +50,10 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}>
-          
-            A people-first
+
+            A community-first
             <br />
-            agenda for{" "}
+            resource for{" "}
             <span className="gradient-gold-text">
               District&nbsp;11A
             </span>
@@ -64,8 +64,8 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}>
-          
-            I've spent my career building housing stability, strengthening mental health supports, and bringing partners together. As your Delegate, I will fight for safer neighborhoods and a government that delivers.
+
+            I've spent my career building housing stability, strengthening mental health supports, and bringing partners together. This hub is where that work continues — a home base for resources, updates, and ways to get involved in District 11A.
           </motion.p>
 
           <motion.div
@@ -73,12 +73,12 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}>
-          
-            <a href="#volunteer" className="px-6 py-3 rounded-md font-semibold gradient-gold text-primary-foreground hover:opacity-90 transition-opacity flex items-center gap-2 text-sm">
-              Join the Campaign <ArrowRight size={16} />
+
+            <a href="#resources" className="px-6 py-3 rounded-md font-semibold gradient-gold text-primary-foreground hover:opacity-90 transition-opacity flex items-center gap-2 text-sm">
+              Explore Resources <ArrowRight size={16} />
             </a>
-            <a href="#priorities" className="px-6 py-3 rounded-md font-medium gradient-blue text-secondary-foreground hover:opacity-90 transition-opacity text-sm">
-              See Priorities
+            <a href="#involved" className="px-6 py-3 rounded-md font-medium gradient-blue text-secondary-foreground hover:opacity-90 transition-opacity text-sm">
+              Get Involved
             </a>
           </motion.div>
 

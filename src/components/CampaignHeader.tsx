@@ -4,9 +4,8 @@ import { Menu, X, ArrowRight } from "lucide-react";
 
 const navLinks = [
 { label: "About", href: "#about" },
-{ label: "Priorities", href: "#priorities" },
-{ label: "Events", href: "/nico-pug-event", pulse: true },
-{ label: "Volunteer", href: "#volunteer" },
+{ label: "Resources", href: "#resources" },
+{ label: "Get Involved", href: "#involved" },
 { label: "Contact", href: "#contact" }];
 
 
@@ -22,7 +21,7 @@ const CampaignHeader = () => {
           </div>
           <div className="flex flex-col leading-none">
             <strong className="text-sm tracking-wide font-semibold group-hover:text-primary transition-colors">Nico Sanders</strong>
-            <span className="text-[11px] text-muted-foreground mt-0.5 uppercase tracking-widest">CANDIDATE FOR DELEGATE, DISTRICT 11A</span>
+            <span className="text-[11px] text-muted-foreground mt-0.5 uppercase tracking-widest">Community Outreach, District 11A</span>
           </div>
         </a>
 
@@ -44,14 +43,14 @@ const CampaignHeader = () => {
             )
           )}
           <div className="w-px h-5 bg-border mx-2" />
-          <a 
+          <a
             className="px-4 py-2 text-sm font-bold gradient-gold text-primary-foreground rounded-md hover:opacity-90 transition-opacity flex items-center gap-2"
-            href="https://secure.actblue.com/donate/nico-sanders-1"
+            href="#resources"
           >
-            Donate
+            Find Resources
           </a>
-          <a href="#volunteer" className="ml-1 px-5 py-2.5 rounded-md text-sm font-semibold border border-primary/30 text-primary hover:bg-primary/10 transition-colors flex items-center gap-2">
-            Join the Team <ArrowRight size={14} />
+          <a href="#involved" className="ml-1 px-5 py-2.5 rounded-md text-sm font-semibold border border-primary/30 text-primary hover:bg-primary/10 transition-colors flex items-center gap-2">
+            Get Involved <ArrowRight size={14} />
           </a>
         </nav>
 
@@ -90,15 +89,15 @@ const CampaignHeader = () => {
                 )
               )}
               <div className="flex gap-3 mt-3 pt-3 border-t border-border">
-                <a 
-                  onClick={() => setOpen(false)} 
+                <a
+                  onClick={() => setOpen(false)}
                   className="flex-1 text-center py-3 rounded-md text-sm font-bold gradient-gold text-primary-foreground hover:opacity-90 transition-opacity"
-                  href="https://secure.actblue.com/donate/nico-sanders-1"
+                  href="#resources"
                 >
-                  Donate
+                  Find Resources
                 </a>
-                <a href="#volunteer" onClick={() => setOpen(false)} className="flex-1 text-center py-3 rounded-md text-sm font-semibold border border-primary/30 text-primary">
-                  Join the Team
+                <a href="#involved" onClick={() => setOpen(false)} className="flex-1 text-center py-3 rounded-md text-sm font-semibold border border-primary/30 text-primary">
+                  Get Involved
                 </a>
               </div>
             </div>

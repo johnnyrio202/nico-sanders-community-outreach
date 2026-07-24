@@ -3,7 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import ShareBar from "@/components/ShareBar";
 import AboutSection from "@/components/AboutSection";
 import PrioritiesSection from "@/components/PrioritiesSection";
-import VolunteerDonateSection from "@/components/VolunteerDonateSection";
+import GetInvolvedSection from "@/components/GetInvolvedSection";
 import ContactSection from "@/components/ContactSection";
 import CampaignFooter from "@/components/CampaignFooter";
 
@@ -15,7 +15,7 @@ const Index = () => (
       <HeroSection />
       <AboutSection />
       <PrioritiesSection />
-      <VolunteerDonateSection />
+      <GetInvolvedSection />
       <ContactSection />
     </main>
     <CampaignFooter />

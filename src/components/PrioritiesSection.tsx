@@ -2,27 +2,27 @@ import { Home, Heart, GraduationCap, Landmark, Briefcase, TreePine } from "lucid
 import ScrollReveal from "./ScrollReveal";
 
 const priorities = [
-  { icon: Home, title: "Housing & Cost of Living", desc: "Expand affordable housing, protect renters and homeowners from displacement, reduce energy bills and support workforce housing near jobs." },
-  { icon: Heart, title: "Mental Health & Safety", desc: "Increase treatment access, strengthen crisis response, and invest in violence prevention strategies." },
-  { icon: GraduationCap, title: "Schools & Opportunity", desc: "Back educators, improve supports, and expand career-connected learning and apprenticeships." },
-  { icon: Landmark, title: "Good Government", desc: "Cut delays, improve constituent service, and make state resources easier to access." },
-  { icon: Briefcase, title: "Small Business & Economy", desc: "Support entrepreneurs with fair procurement, technical assistance, and safer corridors." },
-  { icon: TreePine, title: "Environment & Infrastructure", desc: "Prepare for severe weather, invest in stormwater solutions, and protect green spaces." },
+  { icon: Home, title: "Housing & Cost of Living", desc: "Find help with affordable housing, renter protections, energy bill assistance, and workforce housing near jobs." },
+  { icon: Heart, title: "Mental Health & Safety", desc: "Connect to treatment access, crisis response lines, and local violence-prevention programs." },
+  { icon: GraduationCap, title: "Schools & Opportunity", desc: "Resources for families and educators, plus career-connected learning and apprenticeship programs." },
+  { icon: Landmark, title: "Good Government", desc: "Guides to state resources, constituent services, and getting help navigating local government." },
+  { icon: Briefcase, title: "Small Business & Economy", desc: "Support and resources for entrepreneurs — procurement help, technical assistance, and more." },
+  { icon: TreePine, title: "Environment & Infrastructure", desc: "Severe weather prep, stormwater resources, and information on protecting local green spaces." },
 ];
 
 const PrioritiesSection = () => (
-  <section id="priorities" className="py-24 relative">
+  <section id="resources" className="py-24 relative">
     <div className="section-divider mb-24" />
     <div className="container">
       <ScrollReveal>
         <div className="text-center mb-16">
-          <span className="text-xs uppercase tracking-[0.3em] text-primary font-medium mb-4 block">Platform</span>
+          <span className="text-xs uppercase tracking-[0.3em] text-primary font-medium mb-4 block">Resources</span>
           <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4">
-            Priorities for{" "}
+            Resources for{" "}
             <span className="gradient-gold-text">Our Community</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">
-            These are starting points. Detailed plans will come as we meet with residents across District 11A.
+            Starting points for residents of District 11A. More will be added as we connect with neighbors and local organizations.
           </p>
         </div>
       </ScrollReveal>

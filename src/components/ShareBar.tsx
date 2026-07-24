@@ -3,8 +3,8 @@ import { Link2, Check } from "lucide-react";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
 
-const SHARE_URL = "https://nicoformddelegate.com";
-const SHARE_TEXT = "Support Nico Sanders for Maryland House of Delegates, District 11A — let's raise the bar for our community.";
+const SHARE_URL = "https://nicosanders.net";
+const SHARE_TEXT = "Check out the District 11A Community Hub — resources and updates from Nico Sanders.";
 
 const FacebookIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 shrink-0">

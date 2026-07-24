@@ -36,7 +36,7 @@ const BackendInfo = () => {
               </div>
               <h2 className="font-display text-xl font-bold mb-2">Database</h2>
               <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                Stores submissions from the campaign forms. Three tables are configured with
+                Stores submissions from the site's forms. Three tables are configured with
                 public-insert row-level security policies so visitors can submit without an
                 account, while reads stay restricted.
               </p>
@@ -56,7 +56,7 @@ const BackendInfo = () => {
               <h2 className="font-display text-xl font-bold mb-2">Email Notifications</h2>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 A serverless edge function (<code className="text-xs bg-muted px-1.5 py-0.5 rounded">send-contact-email</code>)
-                sends notifications to the campaign whenever someone signs up, volunteers, or
+                sends notifications whenever someone signs up, volunteers, or
                 submits the contact form. Email delivery uses <strong>Resend</strong> via a
                 stored API key.
               </p>
@@ -89,7 +89,6 @@ const BackendInfo = () => {
               </p>
               <ul className="text-sm text-muted-foreground space-y-1.5">
                 <li className="flex gap-2"><span className="text-secondary">•</span> Resend (transactional email)</li>
-                <li className="flex gap-2"><span className="text-secondary">•</span> ActBlue (donation processing, external link)</li>
               </ul>
             </div>
           </ScrollReveal>

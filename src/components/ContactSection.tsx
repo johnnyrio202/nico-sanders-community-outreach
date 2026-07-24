@@ -4,7 +4,7 @@ import { Mail, Send, Copy, Check } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import ScrollReveal from "./ScrollReveal";
 
-const CAMPAIGN_EMAIL = "info@nicoformddelegate.com";
+const CAMPAIGN_EMAIL = "info@nicosanders.net";
 
 const ContactSection = () => {
   const [sent, setSent] = useState(false);
@@ -69,7 +69,7 @@ const ContactSection = () => {
                 Let's <span className="gradient-blue-text">Connect</span>
               </h2>
               <p className="text-muted-foreground max-w-md mx-auto">
-                Policy ideas, endorsement requests, media inquiries, or volunteer coordination — we'd love to hear from you.
+                Resource suggestions, event info, media inquiries, or ways to get involved — we'd love to hear from you.
               </p>
             </div>
 
@@ -157,7 +157,7 @@ const ContactSection = () => {
             </div>
 
             <p className="text-[11px] text-muted-foreground text-center mt-8">
-              Need content in another format? Email the campaign and we will accommodate.
+              Need content in another format? Email us and we will accommodate.
             </p>
           </div>
         </ScrollReveal>

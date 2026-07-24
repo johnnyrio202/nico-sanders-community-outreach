@@ -12,14 +12,14 @@ const CampaignFooter = () =>
             </div>
             <span className="font-display font-semibold">Nico Sanders</span>
           </div>
-          <p className="text-xs text-muted-foreground leading-relaxed">Paid for by the authority of Friends of Nico Sanders, Lara Figures, Treasurer, P.O. Box 1060, Owings Mills, MD 21117.  Campaign material for Nico Sanders for MD Delegate, District 11A.</p>
+          <p className="text-xs text-muted-foreground leading-relaxed">Nico Sanders Community Outreach — a neutral resource hub for residents of District 11A.</p>
         </div>
 
         <div className="flex flex-col items-start md:items-end gap-3">
           <div className="flex flex-wrap gap-2">
             {[{ label: "Email Signup", href: "#updates" },
-          { label: "Volunteer", href: "#volunteer" },
-          { label: "Donate", href: "https://secure.actblue.com/donate/nico-sanders-1", highlight: true }].
+          { label: "Resources", href: "#resources" },
+          { label: "Get Involved", href: "#involved", highlight: true }].
           map((l) =>
           <a key={l.href} href={l.href}
           className={`text-xs font-bold rounded-md px-4 py-2.5 transition-all flex items-center gap-2 ${l.highlight ? 'gradient-gold text-primary-foreground hover:opacity-90' : 'text-muted-foreground border border-border hover:text-foreground hover:border-primary/20'}`}>

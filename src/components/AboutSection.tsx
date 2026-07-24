@@ -62,7 +62,7 @@ const AboutSection = () => {
             <span className="text-xs uppercase tracking-[0.3em] text-primary font-medium mb-4 block">About</span>
             <h2 className="font-display text-3xl sm:text-4xl font-bold leading-tight mb-8">
               Building coalitions that{" "}
-              <span className="gradient-gold-text">deliver results</span>
+              <span className="gradient-gold-text">serve our community</span>
             </h2>
 
             {/* Carousel */}
@@ -97,17 +97,17 @@ const AboutSection = () => {
                 and I have partnered with residents, service providers, and public agencies to deliver real outcomes.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                In Annapolis, I will focus on common-sense legislation that lowers costs, strengthens public safety through prevention and accountability,
-                and improves access to care for mental health and substance use.
+                This hub is where that work continues. It's a place to find real resources, hear what's happening around District 11A,
+                and connect with the organizations already doing good work here.
               </p>
             </div>
 
             <ul className="space-y-3 mt-8">
               {[
                 "Show up consistently in District 11A and communicate clearly.",
-                "Protect working families and older adults from rising costs.",
-                "Support effective public safety strategies that prevent harm.",
-                "Strengthen schools and expand career-connected learning.",
+                "Point neighbors toward real housing, health, and safety resources.",
+                "Highlight local organizations and events worth knowing about.",
+                "Give residents an easy way to ask questions and get connected.",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3 text-sm text-muted-foreground">
                   <span className="w-1.5 h-1.5 rounded-full gradient-gold mt-2 shrink-0" />
@@ -120,8 +120,8 @@ const AboutSection = () => {
           <ScrollReveal delay={0.2}>
             <div className="bg-card rounded-xl p-8 glow-amber border border-border shadow-sm" id="updates">
               <span className="text-xs uppercase tracking-[0.3em] text-primary font-medium mb-4 block">Stay Connected</span>
-              <h3 className="font-display text-2xl font-bold mb-2">Campaign Updates</h3>
-              <p className="text-muted-foreground text-sm mb-6">Sign up for emails about events, priorities, and ways to help.</p>
+              <h3 className="font-display text-2xl font-bold mb-2">Community Updates</h3>
+              <p className="text-muted-foreground text-sm mb-6">Sign up for emails about resources, events, and community news.</p>
 
               <form onSubmit={handleSignup} className="space-y-4">
                 <div>
@@ -139,7 +139,7 @@ const AboutSection = () => {
                 </button>
                 {signupDone && <p className="text-xs text-primary">✓ Thank you! You're signed up.</p>}
                 <p className="text-[11px] text-muted-foreground leading-relaxed">
-                  By signing up, you agree to receive campaign updates. Unsubscribe at any time.
+                  By signing up, you agree to receive community updates. Unsubscribe at any time.
                 </p>
               </form>
             </div>
