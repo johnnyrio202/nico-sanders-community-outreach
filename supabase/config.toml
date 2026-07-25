@@ -1,4 +1,7 @@
-project_id = "kheqibctakoejwobnmig"
+project_id = "sldlxxcyhgccattpllqm"
 
 [functions.send-contact-email]
+verify_jwt = false
+
+[functions.send-admin-alert]
 verify_jwt = false

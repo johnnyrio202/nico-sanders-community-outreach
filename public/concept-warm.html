@@ -99,6 +99,16 @@
   .card:nth-child(6n+3) .icon,.card:nth-child(6n+6) .icon{background:rgba(212,160,60,0.16);}
   .card h3{font-family:'Fraunces',serif;font-size:19px;font-weight:600;margin-bottom:10px;}
   .card p{font-size:14.5px;line-height:1.6;color:var(--ink-soft);}
+  .card p.card-intro{margin-bottom:16px;}
+  .resource-list{list-style:none;border-top:1px solid rgba(43,38,32,0.08);padding-top:14px;}
+  .resource-item{padding:9px 0;border-bottom:1px solid rgba(43,38,32,0.06);}
+  .resource-item:last-child{border-bottom:none;}
+  .resource-item a.resource-title{font-weight:700;font-size:13.5px;color:var(--terracotta-deep);text-decoration:none;}
+  .resource-item a.resource-title:hover{text-decoration:underline;}
+  .resource-item .resource-desc{display:block;font-size:12.5px;color:var(--ink-soft);line-height:1.5;margin-top:2px;}
+  .resource-item a.resource-phone{display:inline-block;margin-top:4px;font-size:12px;font-weight:600;color:var(--sage-deep);text-decoration:none;}
+  .resource-list[data-state="loading"] .resource-item,
+  .resource-list[data-state="empty"] .resource-item{color:var(--ink-soft);font-size:12.5px;font-style:italic;border-bottom:none;padding:0;}
 
   /* involved */
   .involved-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
@@ -227,13 +237,13 @@
       <h2 class="display">Resources for our community</h2>
       <p>Starting points for residents of District 11A. More will be added as we connect with neighbors and local organizations.</p>
     </div>
-    <div class="card-grid">
-      <div class="card"><div class="icon">🏠</div><h3>Housing &amp; Cost of Living</h3><p>Find help with affordable housing, renter protections, energy bill assistance, and workforce housing near jobs.</p></div>
-      <div class="card"><div class="icon">💛</div><h3>Mental Health &amp; Safety</h3><p>Connect to treatment access, crisis response lines, and local violence-prevention programs.</p></div>
-      <div class="card"><div class="icon">🎓</div><h3>Schools &amp; Opportunity</h3><p>Resources for families and educators, plus career-connected learning and apprenticeship programs.</p></div>
-      <div class="card"><div class="icon">🏛️</div><h3>Good Government</h3><p>Guides to state resources, constituent services, and getting help navigating local government.</p></div>
-      <div class="card"><div class="icon">💼</div><h3>Small Business &amp; Economy</h3><p>Support and resources for entrepreneurs — procurement help, technical assistance, and more.</p></div>
-      <div class="card"><div class="icon">🌳</div><h3>Environment &amp; Infrastructure</h3><p>Severe weather prep, stormwater resources, and information on protecting local green spaces.</p></div>
+    <div class="card-grid" id="resource-cards">
+      <div class="card" data-category="Housing & Cost of Living"><div class="icon">🏠</div><h3>Housing &amp; Cost of Living</h3><p class="card-intro">Find help with affordable housing, renter protections, energy bill assistance, and workforce housing near jobs.</p><ul class="resource-list" data-state="loading"><li class="resource-item">Loading resources…</li></ul></div>
+      <div class="card" data-category="Mental Health & Safety"><div class="icon">💛</div><h3>Mental Health &amp; Safety</h3><p class="card-intro">Connect to treatment access, crisis response lines, and local violence-prevention programs.</p><ul class="resource-list" data-state="loading"><li class="resource-item">Loading resources…</li></ul></div>
+      <div class="card" data-category="Schools & Opportunity"><div class="icon">🎓</div><h3>Schools &amp; Opportunity</h3><p class="card-intro">Resources for families and educators, plus career-connected learning and apprenticeship programs.</p><ul class="resource-list" data-state="loading"><li class="resource-item">Loading resources…</li></ul></div>
+      <div class="card" data-category="Good Government"><div class="icon">🏛️</div><h3>Good Government</h3><p class="card-intro">Guides to state resources, constituent services, and getting help navigating local government.</p><ul class="resource-list" data-state="loading"><li class="resource-item">Loading resources…</li></ul></div>
+      <div class="card" data-category="Small Business & Economy"><div class="icon">💼</div><h3>Small Business &amp; Economy</h3><p class="card-intro">Support and resources for entrepreneurs — procurement help, technical assistance, and more.</p><ul class="resource-list" data-state="loading"><li class="resource-item">Loading resources…</li></ul></div>
+      <div class="card" data-category="Environment & Infrastructure"><div class="icon">🌳</div><h3>Environment &amp; Infrastructure</h3><p class="card-intro">Severe weather prep, stormwater resources, and information on protecting local green spaces.</p><ul class="resource-list" data-state="loading"><li class="resource-item">Loading resources…</li></ul></div>
     </div>
   </div>
 </section>
@@ -342,9 +352,38 @@
 </footer>
 
 <script>
-const SUPABASE_URL = "https://kheqibctakoejwobnmig.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtoZXFpYmN0YWtvZWp3b2JubWlnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1NDEyNTQsImV4cCI6MjA4ODExNzI1NH0.udD24MAiqQjFKq_nOkrd5B_G4cIMw4TG6iHmnC9agUM";
-async function submitTo(table, payload, btn, successEl) {
+const SUPABASE_URL = "https://sldlxxcyhgccattpllqm.supabase.co";
+const SUPABASE_KEY = "sb_publishable_hy9RJt27sqlLptRPY34sYg_tDoDx7K_";
+async function notifyEmail(type, name, email, message) {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/functions/v1/send-contact-email`, {
+      method: "POST",
+      headers: {
+        "apikey": SUPABASE_KEY,
+        "Authorization": `Bearer ${SUPABASE_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name, email, message, type })
+    });
+    if (!res.ok) console.warn("Email notification failed:", await res.text());
+  } catch (err) {
+    console.warn("Email notification failed:", err);
+  }
+}
+
+function notifyAdminAlert(errorMessage, context, userName, userEmail) {
+  fetch(`${SUPABASE_URL}/functions/v1/send-admin-alert`, {
+    method: "POST",
+    headers: {
+      "apikey": SUPABASE_KEY,
+      "Authorization": `Bearer ${SUPABASE_KEY}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ error: errorMessage, context, userName, userEmail })
+  }).catch(() => {});
+}
+
+async function submitTo(table, payload, btn, successEl, emailInfo) {
   btn.disabled = true;
   const original = btn.textContent;
   btn.textContent = "Sending…";
@@ -362,9 +401,15 @@ async function submitTo(table, payload, btn, successEl) {
     if (!res.ok) throw new Error(await res.text());
     successEl.style.display = "block";
     btn.closest("form").reset();
+    if (emailInfo) {
+      notifyEmail(emailInfo.type, emailInfo.name, emailInfo.email, emailInfo.message);
+    }
   } catch (err) {
     alert("Something went wrong — please try again or email info@nicosanders.net.");
     console.error(err);
+    if (emailInfo) {
+      notifyAdminAlert(String(err), `${table} form submission`, emailInfo.name, emailInfo.email);
+    }
   } finally {
     btn.disabled = false;
     btn.textContent = original;
@@ -376,23 +421,80 @@ document.querySelectorAll("form[data-table]").forEach(form => {
     const table = form.dataset.table;
     const fd = new FormData(form);
     let payload = {};
+    let emailInfo = null;
+
     if (table === "campaign_joins") {
-      payload = { email: fd.get("email") };
+      const email = fd.get("email");
+      payload = { email };
+      emailInfo = { type: "join", name: fd.get("name") || "Community Update Signup", email, message: `New community update signup: ${email}` };
     } else if (table === "volunteer_signups") {
-      payload = { name: fd.get("name"), email: fd.get("email"), phone: fd.get("phone") || null, help_details: fd.get("help") || null };
+      const name = fd.get("name"), email = fd.get("email"), phone = fd.get("phone"), help = fd.get("help");
+      payload = { name, email, phone: phone || null, help_details: help || null };
+      emailInfo = { type: "volunteer", name, email, message: `Phone: ${phone || "N/A"}\nHow they want to help: ${help || "N/A"}` };
     } else if (table === "contact_messages") {
       const isResource = form.dataset.kind === "resource";
-      payload = {
-        name: fd.get("name"),
-        email: fd.get("email"),
-        message: isResource ? `Resource suggestion: ${fd.get("resource")}` : fd.get("message")
-      };
+      const name = fd.get("name"), email = fd.get("email");
+      const message = isResource ? `Resource suggestion: ${fd.get("resource")}` : fd.get("message");
+      payload = { name, email, message };
+      emailInfo = { type: isResource ? "resource" : "contact", name, email, message };
     }
+
     const btn = form.querySelector("button[type=submit]");
     const successEl = form.querySelector(".form-success");
-    submitTo(table, payload, btn, successEl);
+    submitTo(table, payload, btn, successEl, emailInfo);
   });
 });
+
+function escapeHtml(str) {
+  const div = document.createElement("div");
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+async function loadResources() {
+  const cards = document.querySelectorAll("#resource-cards .card[data-category]");
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/resources?select=category,title,description,url,phone&order=sort_order.asc`, {
+      headers: {
+        "apikey": SUPABASE_KEY,
+        "Authorization": `Bearer ${SUPABASE_KEY}`
+      }
+    });
+    if (!res.ok) throw new Error(await res.text());
+    const rows = await res.json();
+
+    cards.forEach(card => {
+      const category = card.dataset.category;
+      const list = card.querySelector(".resource-list");
+      const items = rows.filter(r => r.category === category);
+
+      if (items.length === 0) {
+        list.dataset.state = "empty";
+        list.innerHTML = `<li class="resource-item">More resources coming soon for this topic.</li>`;
+        return;
+      }
+
+      list.dataset.state = "loaded";
+      list.innerHTML = items.map(r => `
+        <li class="resource-item">
+          ${r.url
+            ? `<a class="resource-title" href="${escapeHtml(r.url)}" target="_blank" rel="noopener">${escapeHtml(r.title)}</a>`
+            : `<span class="resource-title">${escapeHtml(r.title)}</span>`}
+          <span class="resource-desc">${escapeHtml(r.description)}</span>
+          ${r.phone ? `<a class="resource-phone" href="tel:${escapeHtml(r.phone.replace(/[^0-9+]/g, ""))}">${escapeHtml(r.phone)}</a>` : ""}
+        </li>
+      `).join("");
+    });
+  } catch (err) {
+    console.error("Failed to load resources:", err);
+    cards.forEach(card => {
+      const list = card.querySelector(".resource-list");
+      list.dataset.state = "empty";
+      list.innerHTML = `<li class="resource-item">Resources are temporarily unavailable — please check back soon.</li>`;
+    });
+  }
+}
+loadResources();
 </script>
 
 </body>
