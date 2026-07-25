@@ -1,13 +1,12 @@
 {
-  "redirects": [
+  "routes": [
     {
-      "source": "/donate",
-      "destination": "https://secure.actblue.com/donate/nico-sanders-1",
-      "permanent": true
-    }
-  ],
-  "rewrites": [
-    { "source": "/", "destination": "/concept-warm.html" },
-    { "source": "/(.*)", "destination": "/index.html" }
+      "src": "^/donate$",
+      "status": 301,
+      "headers": { "Location": "https://secure.actblue.com/donate/nico-sanders-1" }
+    },
+    { "src": "^/$", "dest": "/concept-warm.html" },
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
