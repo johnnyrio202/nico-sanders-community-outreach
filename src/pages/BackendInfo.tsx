@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { ArrowLeft, Database, Mail, Shield, Server } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 
@@ -6,12 +5,12 @@ const BackendInfo = () => {
   return (
     <main className="min-h-screen py-20">
       <div className="container max-w-4xl">
-        <Link
-          to="/"
+        <a
+          href="/"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
         >
           <ArrowLeft size={16} /> Back to home
-        </Link>
+        </a>
 
         <ScrollReveal>
           <span className="text-xs uppercase tracking-[0.3em] text-primary font-medium mb-4 block">
