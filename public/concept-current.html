@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 1 · Current Direction — Nico Sanders Community Outreach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{
+    --background:hsl(220 20% 97%);
+    --foreground:hsl(220 20% 10%);
+    --card:hsl(0 0% 100%);
+    --primary:hsl(38 92% 50%);
+    --primary-deep:hsl(32 85% 42%);
+    --primary-foreground:#fff;
+    --secondary:hsl(220 60% 45%);
+    --secondary-deep:hsl(220 60% 32%);
+    --muted:hsl(220 14% 92%);
+    --muted-foreground:hsl(220 10% 40%);
+    --border:hsl(220 14% 88%);
+  }
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif;background:var(--background);color:var(--foreground);-webkit-font-smoothing:antialiased;}
+  .display{font-family:'Playfair Display',serif;}
+  .container{max-width:1160px;margin:0 auto;padding:0 40px;}
+  .grad-gold{background:linear-gradient(135deg,var(--primary),var(--primary-deep));}
+  .grad-blue{background:linear-gradient(135deg,var(--secondary),var(--secondary-deep));}
+  .grad-gold-text{background:linear-gradient(135deg,var(--primary),var(--primary-deep));-webkit-background-clip:text;background-clip:text;color:transparent;}
+
+  /* switcher bar */
+  .switcher{background:var(--foreground);color:rgba(255,255,255,0.9);font-size:12.5px;}
+  .switcher .row{display:flex;align-items:center;justify-content:space-between;padding:10px 40px;max-width:1160px;margin:0 auto;flex-wrap:wrap;gap:8px;}
+  .switcher a{color:rgba(255,255,255,0.75);text-decoration:none;padding:5px 12px;border-radius:6px;}
+  .switcher a.current{color:#fff;background:rgba(255,255,255,0.14);font-weight:600;}
+  .switcher .all{color:#fff;font-weight:700;}
+
+  header{padding:18px 0;background:rgba(251,251,252,0.85);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:20;backdrop-filter:blur(6px);}
+  header .row{display:flex;align-items:center;justify-content:space-between;}
+  .brand{display:flex;align-items:center;gap:14px;}
+  .brand .mark{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;}
+  .brand .mark span{font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:#fff;}
+  .brand .name{font-weight:600;font-size:15px;}
+  .brand .tag{font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted-foreground);margin-top:2px;}
+  nav{display:flex;align-items:center;gap:2px;}
+  nav a{font-size:14px;color:var(--muted-foreground);text-decoration:none;padding:9px 14px;border-radius:8px;font-weight:500;}
+  nav a.cta{color:var(--primary-foreground);padding:10px 18px;margin-left:6px;font-weight:700;border-radius:8px;}
+  nav a.cta.outline{color:var(--primary-deep);background:transparent;border:1px solid rgba(217,150,20,0.35);}
+
+  .hero{padding:72px 0 88px;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:-140px;right:-40px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(217,150,20,0.10),transparent 70%);}
+  .hero::after{content:'';position:absolute;bottom:-160px;left:-120px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(45,95,184,0.10),transparent 70%);}
+  .hero-grid{display:grid;grid-template-columns:1fr 0.92fr;gap:56px;align-items:center;position:relative;z-index:1;}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--primary-deep);border:1px solid rgba(217,150,20,0.3);border-radius:999px;padding:7px 18px;margin-bottom:24px;}
+  h1{font-family:'Playfair Display',serif;font-size:50px;line-height:0.98;font-weight:700;letter-spacing:-0.01em;margin-bottom:20px;}
+  .hero p.lede{font-size:16.5px;line-height:1.7;color:var(--muted-foreground);max-width:480px;margin-bottom:30px;}
+  .btnrow{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;}
+  .btn.primary{color:var(--primary-foreground);}
+  .btn.secondary{color:#fff;}
+  .stats{display:flex;gap:32px;padding-top:26px;border-top:1px solid var(--border);}
+  .stats .stat b{display:block;font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--primary-deep);}
+  .stats .stat span{font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted-foreground);}
+
+  .hero-photo{position:relative;}
+  .photo-frame{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 24px 48px rgba(20,20,30,0.14);}
+  .photo-frame img{width:100%;height:100%;object-fit:cover;object-position:top;}
+  .photo-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(20,20,25,0.55),transparent 45%);}
+  .photo-cap{position:absolute;bottom:18px;left:0;right:0;text-align:center;}
+  .photo-cap b{display:block;color:#fff;font-family:'Playfair Display',serif;font-size:16px;}
+  .photo-cap span{color:rgba(255,255,255,0.75);font-size:12px;}
+  .badges{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
+  .badges div{border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center;background:rgba(255,255,255,0.6);}
+  .badges span{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--secondary-deep);}
+  .badges div:nth-child(odd) span{color:var(--primary-deep);}
+
+  .section-divider{height:1px;background:var(--border);}
+  section{padding:88px 0;}
+  section.alt{background:var(--card);}
+  .sec-head{text-align:center;max-width:600px;margin:0 auto 52px;}
+  .sec-head .eyebrow{display:inline-flex;}
+  .sec-head h2{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;margin-bottom:12px;}
+  .sec-head p{color:var(--muted-foreground);font-size:15.5px;line-height:1.6;}
+
+  /* about */
+  .about-grid{display:grid;grid-template-columns:1fr 0.8fr;gap:56px;}
+  .about-grid h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;margin-bottom:24px;}
+  .carousel{position:relative;width:100%;max-width:420px;aspect-ratio:3/4;border-radius:14px;overflow:hidden;border:1px solid var(--border);margin-bottom:24px;}
+  .carousel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:xfade 25s infinite;opacity:0;}
+  .carousel img:nth-child(1){animation-delay:0s;}
+  .carousel img:nth-child(2){animation-delay:5s;}
+  .carousel img:nth-child(3){animation-delay:10s;}
+  .carousel img:nth-child(4){animation-delay:15s;}
+  .carousel img:nth-child(5){animation-delay:20s;}
+  @keyframes xfade{0%{opacity:0;}4%{opacity:1;}20%{opacity:1;}24%{opacity:0;}100%{opacity:0;}}
+  .about-grid p{color:var(--muted-foreground);line-height:1.7;margin-bottom:14px;}
+  .about-list{margin-top:20px;list-style:none;}
+  .about-list li{display:flex;gap:12px;font-size:14px;color:var(--muted-foreground);margin-bottom:12px;}
+  .about-list li::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:7px;}
+  .about-list li:nth-child(odd)::before{background:var(--primary);}
+  .about-list li:nth-child(even)::before{background:var(--secondary);}
+
+  .stay-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:32px;box-shadow:0 1px 2px rgba(20,20,30,.04);height:fit-content;}
+  .stay-card h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin:10px 0 8px;}
+  .stay-card p.desc{color:var(--muted-foreground);font-size:14px;margin-bottom:20px;}
+  .field{margin-bottom:14px;}
+  .field label{font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted-foreground);display:block;margin-bottom:6px;}
+  .field input,.field textarea{width:100%;padding:12px 14px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,0.6);font-family:'Inter',sans-serif;font-size:14px;color:var(--foreground);}
+  .field textarea{resize:vertical;}
+  .form-success{display:none;color:var(--primary-deep);font-size:12.5px;margin-top:10px;}
+  .fineprint{font-size:11px;color:var(--muted-foreground);margin-top:12px;line-height:1.5;}
+
+  /* resources */
+  .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:26px 24px;box-shadow:0 1px 2px rgba(20,20,30,0.04);}
+  .card .icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px;color:#fff;}
+  .card h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;margin-bottom:9px;}
+  .card p{font-size:13.5px;line-height:1.6;color:var(--muted-foreground);}
+
+  /* get involved */
+  .involved-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .involved-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:32px;box-shadow:0 1px 2px rgba(20,20,30,.04);}
+  .involved-head{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+  .involved-head .icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;}
+  .involved-head h3{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;}
+  .involved-head span{font-size:11.5px;color:var(--muted-foreground);}
+  .involved-card p.desc{color:var(--muted-foreground);font-size:14px;margin-bottom:18px;}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .meetup{background:var(--muted);border-radius:12px;padding:20px 22px;margin-top:20px;}
+  .meetup h4{font-family:'Playfair Display',serif;font-size:16px;margin-bottom:6px;}
+  .meetup p{font-size:13px;color:var(--muted-foreground);margin-bottom:8px;}
+  .meetup a{color:var(--primary-deep);font-weight:600;font-size:13px;text-decoration:none;}
+
+  /* contact */
+  .contact-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:40px;box-shadow:0 1px 2px rgba(20,20,30,.04);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:32px;}
+  .reach-box{background:var(--muted);border-radius:12px;padding:26px;}
+  .reach-box h4{font-family:'Playfair Display',serif;font-size:17px;margin-bottom:14px;}
+  .reach-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+  .reach-row a{font-size:13px;color:var(--secondary-deep);text-decoration:none;border:1px solid rgba(45,95,184,0.25);padding:8px 14px;border-radius:8px;}
+  .social-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .social-row a{font-size:12px;color:var(--muted-foreground);border:1px solid var(--border);border-radius:8px;padding:8px 12px;text-decoration:none;}
+  .msg-box{background:var(--muted);border-radius:12px;padding:26px;}
+  .msg-box h4{font-family:'Playfair Display',serif;font-size:17px;margin-bottom:14px;}
+
+  footer{background:var(--card);border-top:1px solid var(--border);padding:40px 0;}
+  .footer-grid{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;}
+  .footer-links{display:flex;gap:10px;flex-wrap:wrap;}
+  .footer-links a{font-size:12.5px;font-weight:700;padding:10px 16px;border-radius:8px;text-decoration:none;color:var(--muted-foreground);border:1px solid var(--border);}
+  .footer-links a.highlight{color:var(--primary-foreground);border:none;}
+  footer p.note{font-size:12px;color:var(--muted-foreground);max-width:420px;}
+</style>
+</head>
+<body>
+
+<div class="switcher">
+  <div class="row">
+    <a href="/concepts.html" class="all">← All 3 concepts</a>
+    <div>
+      <a href="/concept-current.html" class="current">1 · Current Direction</a>
+      <a href="/concept-warm.html">2 · Neighborhood Warm</a>
+      <a href="/concept-fresh.html">3 · Civic Fresh</a>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="container row">
+    <div class="brand">
+      <div class="mark grad-gold"><span>N</span></div>
+      <div>
+        <div class="name">Nico Sanders</div>
+        <div class="tag">Community Outreach, District 11A</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#resources">Resources</a>
+      <a href="#involved">Get Involved</a>
+      <a href="#contact">Contact</a>
+      <a href="#resources" class="cta grad-gold">Find Resources</a>
+      <a href="#involved" class="cta outline">Get Involved</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top" style="padding-top:72px;">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">District 11A Community Hub</div>
+      <h1>A community-first<br>resource for <span class="grad-gold-text">District&nbsp;11A</span></h1>
+      <p class="lede">I've spent my career building housing stability, strengthening mental health supports, and bringing partners together. This hub is where that work continues — a home base for resources, updates, and ways to get involved.</p>
+      <div class="btnrow">
+        <a href="#resources" class="btn primary grad-gold">Explore Resources →</a>
+        <a href="#involved" class="btn secondary grad-blue">Get Involved</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>Stability</b><span>Housing</span></div>
+        <div class="stat"><b>Access</b><span>Mental Health</span></div>
+        <div class="stat"><b>Opportunity</b><span>Schools</span></div>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="photo-frame">
+        <img src="/concept-assets/nico-elections.jpeg" alt="Nico Sanders">
+        <div class="photo-cap"><b>Nico Sanders</b><span>Community Leader · Coalition Builder</span></div>
+      </div>
+      <div class="badges">
+        <div><span>Data Informed</span></div>
+        <div><span>Community Centered</span></div>
+        <div><span>Results Driven</span></div>
+        <div><span>Coalition Builder</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="section-divider"></div></div>
+
+<section id="about">
+  <div class="container about-grid">
+    <div>
+      <div class="eyebrow">About</div>
+      <h2>Building coalitions that <span class="grad-gold-text">serve our community</span></h2>
+      <div class="carousel">
+        <img src="/concept-assets/nico-daily-record.jpeg" alt="Nico Sanders receiving an award from The Daily Record">
+        <img src="/concept-assets/nico-family.jpeg" alt="Nico Sanders with his family">
+        <img src="/concept-assets/nico-community.jpeg" alt="Nico Sanders with community supporters">
+        <img src="/concept-assets/nico-event.jpeg" alt="Nico Sanders at a community event">
+        <img src="/concept-assets/nico-ravens.jpg" alt="Nico Sanders at a Ravens game">
+      </div>
+      <p>I have worked at the intersection of housing, health, and community safety. I have helped organizations serve people with complex needs, and I have partnered with residents, service providers, and public agencies to deliver real outcomes.</p>
+      <p>This hub is where that work continues. It's a place to find real resources, hear what's happening around District 11A, and connect with the organizations already doing good work here.</p>
+      <ul class="about-list">
+        <li>Show up consistently in District 11A and communicate clearly.</li>
+        <li>Point neighbors toward real housing, health, and safety resources.</li>
+        <li>Highlight local organizations and events worth knowing about.</li>
+        <li>Give residents an easy way to ask questions and get connected.</li>
+      </ul>
+    </div>
+    <div class="stay-card">
+      <div class="eyebrow">Stay Connected</div>
+      <h3>Community Updates</h3>
+      <p class="desc">Sign up for emails about resources, events, and community news.</p>
+      <form data-table="campaign_joins">
+        <div class="field"><label>Name</label><input name="name" required></div>
+        <div class="field"><label>Email</label><input name="email" type="email" required></div>
+        <button type="submit" class="btn primary grad-gold" style="width:100%;justify-content:center;">Sign Up for Updates</button>
+        <p class="form-success">✓ Thank you! You're signed up.</p>
+        <p class="fineprint">By signing up, you agree to receive community updates. Unsubscribe at any time.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="section-divider"></div></div>
+
+<section id="resources" class="alt">
+  <div class="container">
+    <div class="sec-head">
+      <div class="eyebrow">Resources</div>
+      <h2>Resources for Our Community</h2>
+      <p>Starting points for residents of District 11A. More will be added as we connect with neighbors and local organizations.</p>
+    </div>
+    <div class="card-grid">
+      <div class="card"><div class="icon grad-blue">🏠</div><h3>Housing &amp; Cost of Living</h3><p>Find help with affordable housing, renter protections, energy bill assistance, and workforce housing near jobs.</p></div>
+      <div class="card"><div class="icon grad-blue">💛</div><h3>Mental Health &amp; Safety</h3><p>Connect to treatment access, crisis response lines, and local violence-prevention programs.</p></div>
+      <div class="card"><div class="icon grad-blue">🎓</div><h3>Schools &amp; Opportunity</h3><p>Resources for families and educators, plus career-connected learning and apprenticeship programs.</p></div>
+      <div class="card"><div class="icon grad-blue">🏛️</div><h3>Good Government</h3><p>Guides to state resources, constituent services, and getting help navigating local government.</p></div>
+      <div class="card"><div class="icon grad-blue">💼</div><h3>Small Business &amp; Economy</h3><p>Support and resources for entrepreneurs — procurement help, technical assistance, and more.</p></div>
+      <div class="card"><div class="icon grad-blue">🌳</div><h3>Environment &amp; Infrastructure</h3><p>Severe weather prep, stormwater resources, and information on protecting local green spaces.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="section-divider"></div></div>
+
+<section id="involved">
+  <div class="container">
+    <div class="involved-grid">
+      <div class="involved-card">
+        <div class="involved-head">
+          <div class="icon grad-gold">🤝</div>
+          <div><h3>Get Involved</h3><span>Neighbors helping neighbors</span></div>
+        </div>
+        <p class="desc">If you can spare an hour, you can help. Tell us how you want to plug in.</p>
+        <form data-table="volunteer_signups">
+          <div class="field-row">
+            <div class="field"><label>Name</label><input name="name" required></div>
+            <div class="field"><label>Phone</label><input name="phone"></div>
+          </div>
+          <div class="field"><label>Email</label><input name="email" type="email" required></div>
+          <div class="field"><label>How do you want to help?</label><textarea name="help" rows="3" placeholder="Distributing flyers, tabling events, sharing resources, social media…"></textarea></div>
+          <button type="submit" class="btn primary grad-gold" style="width:100%;justify-content:center;">Sign Up to Help</button>
+          <p class="form-success">✓ Thank you! We'll be in touch.</p>
+        </form>
+      </div>
+      <div class="involved-card">
+        <div class="involved-head">
+          <div class="icon grad-blue">💡</div>
+          <div><h3>Suggest a Resource</h3><span>Help this hub grow</span></div>
+        </div>
+        <p class="desc">Know an organization, program, or event that belongs here? Let us know and we'll look into adding it.</p>
+        <form data-table="contact_messages" data-kind="resource">
+          <div class="field-row">
+            <div class="field"><label>Name</label><input name="name" required></div>
+            <div class="field"><label>Email</label><input name="email" type="email" required></div>
+          </div>
+          <div class="field"><label>What should we add?</label><textarea name="resource" rows="3" required placeholder="Organization or program name, what it offers, and how to reach it…"></textarea></div>
+          <button type="submit" class="btn secondary grad-blue" style="width:100%;justify-content:center;">Submit Suggestion</button>
+          <p class="form-success">✓ Thank you! We'll take a look.</p>
+        </form>
+        <div class="meetup">
+          <h4>Host a Community Meetup</h4>
+          <p>Want to host a small gathering in District 11A? We'll help coordinate.</p>
+          <a href="#contact">Get in touch →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="section-divider"></div></div>
+
+<section id="contact" class="alt">
+  <div class="container">
+    <div class="contact-card">
+      <div class="sec-head" style="margin-bottom:0;">
+        <div class="eyebrow" style="color:var(--secondary-deep);border-color:rgba(45,95,184,0.3);">Get in Touch</div>
+        <h2>Let's <span style="color:var(--secondary);">Connect</span></h2>
+        <p>Resource suggestions, event info, media inquiries, or ways to get involved — we'd love to hear from you.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="reach-box">
+          <h4>Reach Out</h4>
+          <div class="reach-row">
+            <a href="mailto:info@nicosanders.net">info@nicosanders.net</a>
+            <a href="tel:+14108035821">(410) 803-5821</a>
+          </div>
+          <p style="font-size:11px;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Social</p>
+          <div class="social-row">
+            <a href="https://www.facebook.com/nicosandersformddelegate" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://www.instagram.com/nicosandersformddelegate" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://x.com/nicosandersformddelegate" target="_blank" rel="noopener">X</a>
+            <a href="https://www.youtube.com/@nicosandersformddelegate" target="_blank" rel="noopener">YouTube</a>
+          </div>
+        </div>
+        <div class="msg-box">
+          <h4>Send a Message</h4>
+          <form data-table="contact_messages" data-kind="contact">
+            <div class="field-row">
+              <div class="field"><label>Name</label><input name="name" required></div>
+              <div class="field"><label>Email</label><input name="email" type="email" required></div>
+            </div>
+            <div class="field"><label>Message</label><textarea name="message" rows="4" required></textarea></div>
+            <button type="submit" class="btn primary grad-gold" style="width:100%;justify-content:center;">Send Message</button>
+            <p class="form-success">✓ Thank you! We'll respond soon.</p>
+          </form>
+        </div>
+      </div>
+      <p style="text-align:center;font-size:11px;color:var(--muted-foreground);margin-top:28px;">Need content in another format? Email us and we will accommodate.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <div class="brand" style="margin-bottom:10px;">
+        <div class="mark grad-gold" style="width:28px;height:28px;"><span style="font-size:13px;">N</span></div>
+        <span style="font-weight:600;">Nico Sanders Community Outreach</span>
+      </div>
+      <p class="note">A neutral resource hub for residents of District 11A.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#about">Email Signup</a>
+      <a href="#resources">Resources</a>
+      <a href="#involved" class="highlight grad-gold">Get Involved</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const SUPABASE_URL = "https://kheqibctakoejwobnmig.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtoZXFpYmN0YWtvZWp3b2JubWlnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1NDEyNTQsImV4cCI6MjA4ODExNzI1NH0.udD24MAiqQjFKq_nOkrd5B_G4cIMw4TG6iHmnC9agUM";
+async function submitTo(table, payload, btn, successEl) {
+  btn.disabled = true;
+  const original = btn.textContent;
+  btn.textContent = "Sending…";
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+      method: "POST",
+      headers: {
+        "apikey": SUPABASE_KEY,
+        "Authorization": `Bearer ${SUPABASE_KEY}`,
+        "Content-Type": "application/json",
+        "Prefer": "return=minimal"
+      },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error(await res.text());
+    successEl.style.display = "block";
+    btn.closest("form").reset();
+  } catch (err) {
+    alert("Something went wrong — please try again or email info@nicosanders.net.");
+    console.error(err);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = original;
+  }
+}
+document.querySelectorAll("form[data-table]").forEach(form => {
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const table = form.dataset.table;
+    const fd = new FormData(form);
+    let payload = {};
+    if (table === "campaign_joins") {
+      payload = { email: fd.get("email") };
+    } else if (table === "volunteer_signups") {
+      payload = { name: fd.get("name"), email: fd.get("email"), phone: fd.get("phone") || null, help_details: fd.get("help") || null };
+    } else if (table === "contact_messages") {
+      const isResource = form.dataset.kind === "resource";
+      payload = {
+        name: fd.get("name"),
+        email: fd.get("email"),
+        message: isResource ? `Resource suggestion: ${fd.get("resource")}` : fd.get("message")
+      };
+    }
+    const btn = form.querySelector("button[type=submit]");
+    const successEl = form.querySelector(".form-success");
+    submitTo(table, payload, btn, successEl);
+  });
+});
+</script>
+
+</body>
+</html>

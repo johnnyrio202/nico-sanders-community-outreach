@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>District 11A Community Hub — Design Concepts</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{
+    --paper:#F1EFF2; --paper-deep:#E7E3EA; --card:#FFFFFF; --ink:#1E1B22;
+    --ink-soft:#5B5563; --line:rgba(30,27,34,0.12); --accent:#5B4B75;
+    --accent-soft:#ECE6F1; --shadow:0 20px 50px rgba(30,20,40,0.12);
+  }
+  html,body{background:var(--paper);color:var(--ink);}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:100px;}
+  a{color:inherit;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+  .cover{padding:88px 0 64px;border-bottom:1px solid var(--line);}
+  .kicker{display:inline-flex;align-items:center;gap:10px;font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:26px;}
+  .kicker::before{content:'';width:7px;height:7px;background:var(--accent);border-radius:1px;}
+  h1{font-family:ui-serif,Georgia,"Times New Roman",serif;font-size:clamp(32px,4.4vw,48px);font-weight:400;line-height:1.1;letter-spacing:-0.01em;text-wrap:balance;margin-bottom:20px;}
+  h1 em{font-style:italic;color:var(--accent);}
+  .cover p.lede{font-size:17.5px;line-height:1.65;color:var(--ink-soft);max-width:640px;}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:64px 0;}
+  .concept-card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;}
+  .thumb-wrap{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--paper-deep);}
+  .thumb-wrap img{width:100%;height:100%;object-fit:cover;object-position:top;}
+  .concept-num{position:absolute;top:14px;left:14px;background:rgba(30,27,34,0.75);color:#fff;font-family:ui-monospace,monospace;font-size:11px;padding:5px 10px;border-radius:6px;letter-spacing:0.05em;}
+  .concept-body{padding:26px 24px 28px;display:flex;flex-direction:column;flex:1;}
+  .concept-body h2{font-family:ui-serif,Georgia,serif;font-weight:400;font-size:22px;margin-bottom:10px;}
+  .concept-body p.desc{color:var(--ink-soft);font-size:14px;line-height:1.6;margin-bottom:18px;flex:1;}
+  .swatches{display:flex;gap:6px;margin-bottom:16px;}
+  .swatches i{width:20px;height:20px;border-radius:6px;display:inline-block;border:1px solid var(--line);}
+  .meta{font-size:12px;color:var(--ink-soft);margin-bottom:20px;}
+  .meta b{color:var(--ink);font-weight:600;}
+  .view-btn{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    background:var(--accent);color:#fff;text-decoration:none;font-weight:600;font-size:14px;
+    padding:13px 20px;border-radius:10px;
+  }
+
+  .compare{padding:24px 0 72px;}
+  .compare h2{font-family:ui-serif,Georgia,serif;font-weight:400;font-size:26px;margin-bottom:28px;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;}
+  table.cmp{border-collapse:collapse;width:100%;min-width:680px;background:var(--card);}
+  table.cmp th,table.cmp td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;font-size:13.5px;}
+  table.cmp th{font-size:10.5px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-soft);font-weight:700;background:var(--paper-deep);}
+  table.cmp tr:last-child td{border-bottom:none;}
+  table.cmp td.rowlabel{font-weight:600;color:var(--ink-soft);font-size:11.5px;text-transform:uppercase;letter-spacing:0.06em;white-space:nowrap;}
+
+  .next-card{background:var(--accent-soft);border:1px solid var(--line);border-radius:16px;padding:32px 36px;display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap;}
+  .next-card h3{font-family:ui-serif,Georgia,serif;font-weight:400;font-size:20px;margin-bottom:6px;}
+  .next-card p{color:var(--ink-soft);font-size:14px;max-width:460px;}
+  .next-card .tag{font-family:ui-monospace,monospace;font-size:11.5px;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:9px 16px;white-space:nowrap;}
+
+  @media (max-width:860px){ .grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <div class="wrap">
+    <div class="kicker">Design Review — Prepared for Nico Sanders</div>
+    <h1>Three directions for the <em>District 11A</em> Community Hub</h1>
+    <p class="lede">Same content, same purpose — three different visual identities, each fully built and clickable. Open each one, click around, try the forms — then let us know which direction (or which pieces of each) should become the live site.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="grid">
+
+    <div class="concept-card">
+      <div class="thumb-wrap">
+        <span class="concept-num">01</span>
+        <img src="/concept-assets/thumb-current.jpg" alt="Current Direction preview">
+      </div>
+      <div class="concept-body">
+        <h2>Current Direction</h2>
+        <p class="desc">The gold-and-navy system already live today, carried forward with community-first copy. Confident and polished, with a slightly institutional, campaign-adjacent feel.</p>
+        <div class="swatches"><i style="background:#F5F5F7;"></i><i style="background:#E8A317;"></i><i style="background:#2D5FB8;"></i><i style="background:#1a1a22;"></i></div>
+        <div class="meta"><b>Type:</b> Playfair Display + Inter</div>
+        <a class="view-btn" href="/concept-current.html">View full concept →</a>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="thumb-wrap">
+        <span class="concept-num">02</span>
+        <img src="/concept-assets/thumb-warm.jpg" alt="Neighborhood Warm preview">
+      </div>
+      <div class="concept-body">
+        <h2>Neighborhood Warm</h2>
+        <p class="desc">Cream, terracotta, and sage green with a warm serif and organic shapes. Reads like a neighborhood association — the least "campaign," most local of the three.</p>
+        <div class="swatches"><i style="background:#FBF5EA;"></i><i style="background:#C1592A;"></i><i style="background:#55705A;"></i><i style="background:#2B2620;"></i></div>
+        <div class="meta"><b>Type:</b> Fraunces + Figtree</div>
+        <a class="view-btn" href="/concept-warm.html">View full concept →</a>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="thumb-wrap">
+        <span class="concept-num">03</span>
+        <img src="/concept-assets/thumb-fresh.jpg" alt="Civic Fresh preview">
+      </div>
+      <div class="concept-body">
+        <h2>Civic Fresh</h2>
+        <p class="desc">Navy, teal, coral, and sunflower with bold geometric type. Energetic and optimistic — reads like a modern civic-tech nonprofit or city initiative.</p>
+        <div class="swatches"><i style="background:#FAFBFB;"></i><i style="background:#0F8B8D;"></i><i style="background:#FF6B4A;"></i><i style="background:#12233B;"></i></div>
+        <div class="meta"><b>Type:</b> Sora + Inter</div>
+        <a class="view-btn" href="/concept-fresh.html">View full concept →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<section class="compare">
+  <div class="wrap">
+    <h2>Quick comparison</h2>
+    <div class="cmp-wrap">
+      <table class="cmp">
+        <thead><tr><th>&nbsp;</th><th>01 · Current Direction</th><th>02 · Neighborhood Warm</th><th>03 · Civic Fresh</th></tr></thead>
+        <tbody>
+          <tr><td class="rowlabel">Mood</td><td>Confident, institutional</td><td>Warm, human, local</td><td>Energetic, optimistic</td></tr>
+          <tr><td class="rowlabel">Palette</td><td>Off-white, gold, navy</td><td>Cream, terracotta, sage</td><td>White, teal, coral, sunflower</td></tr>
+          <tr><td class="rowlabel">Reads most like</td><td>Political campaign site</td><td>Neighborhood association</td><td>Civic-tech nonprofit</td></tr>
+          <tr><td class="rowlabel">Effort to ship</td><td>None — already live</td><td>Full visual rebuild</td><td>Full visual rebuild</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="next-card">
+    <div>
+      <h3>Ready when you are</h3>
+      <p>Pick a direction, or point out specific pieces to mix. Forms on every concept are fully working — feel free to test them.</p>
+    </div>
+    <div class="tag">awaiting client decision</div>
+  </div>
+</div>
+
+</body>
+</html>

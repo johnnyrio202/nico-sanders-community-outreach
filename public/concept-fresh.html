@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 3 · Civic Fresh — Nico Sanders Community Outreach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{
+    --paper:#FAFBFB; --teal:#0F8B8D; --teal-deep:#0B6668;
+    --coral:#FF6B4A; --coral-deep:#E5502F; --sun:#FFB648;
+    --navy:#12233B; --navy-soft:#5A6B80; --card:#fff; --border:rgba(18,35,59,0.12);
+  }
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--navy);-webkit-font-smoothing:antialiased;}
+  .display{font-family:'Sora',sans-serif;}
+  .container{max-width:1160px;margin:0 auto;padding:0 40px;}
+
+  .switcher{background:var(--navy);color:rgba(255,255,255,0.9);font-size:12.5px;}
+  .switcher .row{display:flex;align-items:center;justify-content:space-between;padding:10px 40px;max-width:1160px;margin:0 auto;flex-wrap:wrap;gap:8px;}
+  .switcher a{color:rgba(255,255,255,0.75);text-decoration:none;padding:5px 12px;border-radius:6px;}
+  .switcher a.current{color:#fff;background:rgba(255,255,255,0.14);font-weight:600;}
+  .switcher .all{color:#fff;font-weight:700;}
+
+  header{padding:22px 0;border-bottom:2px solid var(--navy);position:sticky;top:0;z-index:20;background:var(--paper);}
+  header .row{display:flex;align-items:center;justify-content:space-between;}
+  .brand{display:flex;align-items:center;gap:13px;}
+  .brand .mark{width:42px;height:42px;border-radius:12px;background:var(--navy);display:flex;align-items:center;justify-content:center;position:relative;}
+  .brand .mark::after{content:'';position:absolute;width:10px;height:10px;border-radius:50%;background:var(--coral);top:-4px;right:-4px;}
+  .brand .mark span{font-family:'Sora',sans-serif;font-weight:800;font-size:18px;color:#fff;}
+  .brand .name{font-family:'Sora',sans-serif;font-weight:700;font-size:16px;}
+  .brand .tag{font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--navy-soft);margin-top:2px;font-weight:600;}
+  nav{display:flex;align-items:center;gap:4px;}
+  nav a{font-size:14px;font-weight:600;color:var(--navy);text-decoration:none;padding:9px 15px;border-radius:8px;}
+  nav a.cta{background:var(--coral);color:#fff;padding:11px 22px;margin-left:10px;border-radius:10px;}
+  nav a.cta.outline{background:#fff;color:var(--teal-deep);border:2px solid var(--teal);}
+
+  .hero{padding:64px 0 92px;position:relative;overflow:hidden;}
+  .dotgrid{position:absolute;top:60px;right:0;width:220px;height:220px;background-image:radial-gradient(var(--teal) 2px, transparent 2px);background-size:22px 22px;opacity:0.25;}
+  .hero-grid{display:grid;grid-template-columns:1fr 0.92fr;gap:56px;align-items:center;position:relative;z-index:1;}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;padding:8px 16px;border-radius:8px;font-size:11.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:24px;}
+  .eyebrow .sq{width:8px;height:8px;background:var(--coral);}
+  h1{font-family:'Sora',sans-serif;font-size:50px;line-height:1.04;font-weight:800;letter-spacing:-0.02em;margin-bottom:20px;}
+  h1 .hl{color:var(--teal-deep);position:relative;display:inline-block;}
+  h1 .hl::after{content:'';position:absolute;left:0;right:0;bottom:6px;height:14px;background:var(--sun);z-index:-1;opacity:0.55;}
+  .hero p.lede{font-size:17px;line-height:1.65;color:var(--navy-soft);max-width:480px;margin-bottom:30px;}
+  .btnrow{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:16px 26px;border-radius:12px;font-weight:700;font-size:14.5px;text-decoration:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;}
+  .btn.primary{background:var(--coral);color:#fff;box-shadow:4px 6px 0 var(--navy);}
+  .btn.secondary{background:#fff;color:var(--navy);border:2px solid var(--navy);}
+  .chips{display:flex;gap:12px;flex-wrap:wrap;}
+  .chip{background:#fff;border:1.5px solid var(--border);border-radius:999px;padding:8px 16px;font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:7px;}
+  .chip i{width:8px;height:8px;border-radius:50%;background:var(--teal);}
+  .chip:nth-child(2) i{background:var(--coral);}
+  .chip:nth-child(3) i{background:var(--sun);}
+
+  .hero-photo{position:relative;}
+  .photo-shape{position:absolute;inset:18px -18px -18px 18px;background:var(--teal);border-radius:28px;}
+  .photo-frame{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 20px 50px rgba(18,35,59,0.18);}
+  .photo-frame img{width:100%;height:100%;object-fit:cover;}
+  .photo-tag{position:absolute;top:20px;left:20px;background:#fff;border-radius:10px;padding:10px 16px;box-shadow:0 8px 20px rgba(18,35,59,0.14);}
+  .photo-tag b{display:block;font-family:'Sora',sans-serif;font-size:14px;}
+  .photo-tag span{font-size:11px;color:var(--navy-soft);}
+
+  section{padding:88px 0;}
+  section.navy{background:var(--navy);color:#fff;}
+  section.sun{background:var(--sun);}
+  section.card-bg{background:var(--card);}
+  .sec-head{max-width:620px;margin:0 auto 52px;text-align:center;}
+  .sec-head .eyebrow{background:var(--teal);display:inline-flex;}
+  .sec-head h2{font-family:'Sora',sans-serif;font-size:36px;font-weight:800;margin-bottom:12px;}
+  .sec-head p{color:var(--navy-soft);font-size:15.5px;line-height:1.6;}
+  section.navy .sec-head p{color:rgba(255,255,255,0.65);}
+
+  /* about */
+  .about-grid{display:grid;grid-template-columns:1fr 0.8fr;gap:56px;}
+  .about-grid h2{font-family:'Sora',sans-serif;font-size:30px;font-weight:800;margin-bottom:24px;}
+  .carousel{position:relative;width:100%;max-width:420px;aspect-ratio:3/4;border-radius:20px;overflow:hidden;margin-bottom:24px;box-shadow:0 16px 36px rgba(18,35,59,0.14);}
+  .carousel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:xfade 25s infinite;opacity:0;}
+  .carousel img:nth-child(1){animation-delay:0s;} .carousel img:nth-child(2){animation-delay:5s;}
+  .carousel img:nth-child(3){animation-delay:10s;} .carousel img:nth-child(4){animation-delay:15s;}
+  .carousel img:nth-child(5){animation-delay:20s;}
+  @keyframes xfade{0%{opacity:0;}4%{opacity:1;}20%{opacity:1;}24%{opacity:0;}100%{opacity:0;}}
+  .about-grid p{color:var(--navy-soft);line-height:1.7;margin-bottom:14px;}
+  .about-list{margin-top:20px;list-style:none;}
+  .about-list li{display:flex;gap:12px;font-size:14px;color:var(--navy-soft);margin-bottom:12px;}
+  .about-list li::before{content:'';width:7px;height:7px;flex-shrink:0;margin-top:6px;}
+  .about-list li:nth-child(odd)::before{background:var(--teal);}
+  .about-list li:nth-child(even)::before{background:var(--coral);}
+
+  .stay-card{background:var(--navy);color:#fff;border-radius:20px;padding:32px;height:fit-content;}
+  .stay-card h3{font-family:'Sora',sans-serif;font-size:22px;font-weight:800;margin:10px 0 8px;}
+  .stay-card p.desc{color:rgba(255,255,255,0.65);font-size:14px;margin-bottom:20px;}
+  .field{margin-bottom:14px;}
+  .field label{font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.55);display:block;margin-bottom:6px;font-weight:700;}
+  .field input,.field textarea{width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.06);font-family:'Inter',sans-serif;font-size:14px;color:#fff;}
+  .field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,0.35);}
+  .field textarea{resize:vertical;}
+  .form-success{display:none;color:var(--sun);font-size:12.5px;margin-top:10px;font-weight:600;}
+  .fineprint{font-size:11px;color:rgba(255,255,255,0.45);margin-top:12px;line-height:1.5;}
+
+  /* light forms (used outside navy sections) */
+  .light-form .field label{color:var(--navy-soft);}
+  .light-form .field input,.light-form .field textarea{background:var(--paper);border:1.5px solid var(--border);color:var(--navy);}
+  .light-form .form-success{color:var(--teal-deep);}
+  .light-form .fineprint{color:var(--navy-soft);}
+
+  /* resources */
+  .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:18px;padding:28px 24px;}
+  .card .icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;}
+  .card:nth-child(6n+1) .icon{background:var(--teal);} .card:nth-child(6n+2) .icon{background:var(--coral);}
+  .card:nth-child(6n+3) .icon{background:var(--sun);} .card:nth-child(6n+4) .icon{background:var(--coral);}
+  .card:nth-child(6n+5) .icon{background:var(--teal);} .card:nth-child(6n+6) .icon{background:var(--sun);}
+  .card h3{font-family:'Sora',sans-serif;font-size:17px;font-weight:700;margin-bottom:9px;}
+  .card p{font-size:13.5px;line-height:1.6;color:rgba(255,255,255,0.6);}
+
+  /* involved */
+  .involved-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  .involved-card{background:#fff;border:2px solid var(--navy);border-radius:18px;padding:32px;}
+  .involved-head{display:flex;align-items:center;gap:13px;margin-bottom:18px;}
+  .involved-head .icon{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+  .involved-head h3{font-family:'Sora',sans-serif;font-size:20px;font-weight:800;}
+  .involved-head span{font-size:11.5px;color:var(--navy-soft);}
+  .involved-card p.desc{color:var(--navy-soft);font-size:14px;margin-bottom:18px;}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .meetup{background:var(--paper);border:1.5px dashed var(--border);border-radius:14px;padding:20px 22px;margin-top:20px;}
+  .meetup h4{font-family:'Sora',sans-serif;font-size:15px;font-weight:700;margin-bottom:6px;}
+  .meetup p{font-size:13px;color:var(--navy-soft);margin-bottom:8px;}
+  .meetup a{color:var(--coral-deep);font-weight:700;font-size:13px;text-decoration:none;}
+
+  /* contact */
+  .contact-card{background:#fff;border-radius:22px;padding:40px;border:2px solid var(--navy);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:32px;}
+  .reach-box{background:var(--paper);border-radius:16px;padding:26px;border:1.5px solid var(--border);}
+  .reach-box h4{font-family:'Sora',sans-serif;font-size:16px;font-weight:800;margin-bottom:14px;}
+  .reach-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+  .reach-row a{font-size:13px;color:var(--teal-deep);text-decoration:none;border:1.5px solid var(--teal);padding:8px 14px;border-radius:8px;font-weight:700;}
+  .social-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .social-row a{font-size:12px;color:var(--navy-soft);border:1.5px solid var(--border);border-radius:8px;padding:8px 12px;text-decoration:none;font-weight:600;}
+  .msg-box{background:var(--paper);border-radius:16px;padding:26px;border:1.5px solid var(--border);}
+  .msg-box h4{font-family:'Sora',sans-serif;font-size:16px;font-weight:800;margin-bottom:14px;}
+
+  footer{background:var(--paper);padding:32px 0;border-top:2px solid var(--navy);}
+  .footer-grid{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;}
+  .footer-links{display:flex;gap:10px;flex-wrap:wrap;}
+  .footer-links a{font-size:12.5px;font-weight:700;padding:10px 16px;border-radius:10px;text-decoration:none;color:var(--navy);border:1.5px solid var(--border);}
+  .footer-links a.highlight{background:var(--coral);color:#fff;border:none;}
+  footer p.note{font-size:12px;color:var(--navy-soft);max-width:420px;}
+</style>
+</head>
+<body>
+
+<div class="switcher">
+  <div class="row">
+    <a href="/concepts.html" class="all">← All 3 concepts</a>
+    <div>
+      <a href="/concept-current.html">1 · Current Direction</a>
+      <a href="/concept-warm.html">2 · Neighborhood Warm</a>
+      <a href="/concept-fresh.html" class="current">3 · Civic Fresh</a>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="container row">
+    <div class="brand">
+      <div class="mark"><span>N</span></div>
+      <div>
+        <div class="name">Nico Sanders</div>
+        <div class="tag">Community Outreach · District 11A</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#resources">Resources</a>
+      <a href="#involved">Get Involved</a>
+      <a href="#contact">Contact</a>
+      <a href="#resources" class="cta outline">Explore Resources</a>
+      <a href="#involved" class="cta">Get Involved</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="dotgrid"></div>
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow"><span class="sq"></span> District 11A Community Hub</div>
+      <h1>A community-first resource for <span class="hl">District 11A</span></h1>
+      <p class="lede">I've spent my career building housing stability, strengthening mental health supports, and bringing partners together. This hub is where that work continues — a home base for resources, updates, and ways to get involved.</p>
+      <div class="btnrow">
+        <a href="#resources" class="btn primary">Explore Resources →</a>
+        <a href="#involved" class="btn secondary">Get Involved</a>
+      </div>
+      <div class="chips">
+        <div class="chip"><i></i>Housing Stability</div>
+        <div class="chip"><i></i>Mental Health Access</div>
+        <div class="chip"><i></i>School Opportunity</div>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="photo-shape"></div>
+      <div class="photo-frame">
+        <img src="/concept-assets/nico-event.jpeg" alt="Nico Sanders at a community event">
+      </div>
+      <div class="photo-tag"><b>Nico Sanders</b><span>Community Champion</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="card-bg">
+  <div class="container about-grid">
+    <div>
+      <div class="eyebrow">About</div>
+      <h2>Building coalitions that serve our community</h2>
+      <div class="carousel">
+        <img src="/concept-assets/nico-daily-record.jpeg" alt="Nico Sanders receiving an award from The Daily Record">
+        <img src="/concept-assets/nico-family.jpeg" alt="Nico Sanders with his family">
+        <img src="/concept-assets/nico-community.jpeg" alt="Nico Sanders with community supporters">
+        <img src="/concept-assets/nico-elections.jpeg" alt="Nico Sanders at the Maryland State Board of Elections">
+        <img src="/concept-assets/nico-ravens.jpg" alt="Nico Sanders at a Ravens game">
+      </div>
+      <p>I have worked at the intersection of housing, health, and community safety. I have helped organizations serve people with complex needs, and I have partnered with residents, service providers, and public agencies to deliver real outcomes.</p>
+      <p>This hub is where that work continues. It's a place to find real resources, hear what's happening around District 11A, and connect with the organizations already doing good work here.</p>
+      <ul class="about-list">
+        <li>Show up consistently in District 11A and communicate clearly.</li>
+        <li>Point neighbors toward real housing, health, and safety resources.</li>
+        <li>Highlight local organizations and events worth knowing about.</li>
+        <li>Give residents an easy way to ask questions and get connected.</li>
+      </ul>
+    </div>
+    <div class="stay-card">
+      <div class="eyebrow" style="background:var(--coral);">Stay Connected</div>
+      <h3>Community Updates</h3>
+      <p class="desc">Sign up for emails about resources, events, and community news.</p>
+      <form data-table="campaign_joins">
+        <div class="field"><label>Name</label><input name="name" required></div>
+        <div class="field"><label>Email</label><input name="email" type="email" required></div>
+        <button type="submit" class="btn primary" style="width:100%;justify-content:center;box-shadow:none;">Sign Up for Updates</button>
+        <p class="form-success">✓ Thank you! You're signed up.</p>
+        <p class="fineprint">By signing up, you agree to receive community updates. Unsubscribe at any time.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="resources" class="navy">
+  <div class="container">
+    <div class="sec-head">
+      <div class="eyebrow" style="background:var(--teal);">Resources</div>
+      <h2>Resources for our community</h2>
+      <p>Starting points for residents of District 11A. More will be added as we connect with neighbors and local organizations.</p>
+    </div>
+    <div class="card-grid">
+      <div class="card"><div class="icon">🏠</div><h3>Housing &amp; Cost of Living</h3><p>Find help with affordable housing, renter protections, energy bill assistance, and workforce housing near jobs.</p></div>
+      <div class="card"><div class="icon">💛</div><h3>Mental Health &amp; Safety</h3><p>Connect to treatment access, crisis response lines, and local violence-prevention programs.</p></div>
+      <div class="card"><div class="icon">🎓</div><h3>Schools &amp; Opportunity</h3><p>Resources for families and educators, plus career-connected learning and apprenticeship programs.</p></div>
+      <div class="card"><div class="icon">🏛️</div><h3>Good Government</h3><p>Guides to state resources, constituent services, and getting help navigating local government.</p></div>
+      <div class="card"><div class="icon">💼</div><h3>Small Business &amp; Economy</h3><p>Support and resources for entrepreneurs — procurement help, technical assistance, and more.</p></div>
+      <div class="card"><div class="icon">🌳</div><h3>Environment &amp; Infrastructure</h3><p>Severe weather prep, stormwater resources, and information on protecting local green spaces.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="involved" class="card-bg">
+  <div class="container">
+    <div class="involved-grid">
+      <div class="involved-card">
+        <div class="involved-head">
+          <div class="icon" style="background:var(--teal);color:#fff;">🤝</div>
+          <div><h3>Get Involved</h3><span>Neighbors helping neighbors</span></div>
+        </div>
+        <p class="desc">If you can spare an hour, you can help. Tell us how you want to plug in.</p>
+        <form data-table="volunteer_signups" class="light-form">
+          <div class="field-row">
+            <div class="field"><label>Name</label><input name="name" required></div>
+            <div class="field"><label>Phone</label><input name="phone"></div>
+          </div>
+          <div class="field"><label>Email</label><input name="email" type="email" required></div>
+          <div class="field"><label>How do you want to help?</label><textarea name="help" rows="3" placeholder="Distributing flyers, tabling events, sharing resources, social media…"></textarea></div>
+          <button type="submit" class="btn primary" style="width:100%;justify-content:center;">Sign Up to Help</button>
+          <p class="form-success">✓ Thank you! We'll be in touch.</p>
+        </form>
+      </div>
+      <div class="involved-card">
+        <div class="involved-head">
+          <div class="icon" style="background:var(--coral);color:#fff;">💡</div>
+          <div><h3>Suggest a Resource</h3><span>Help this hub grow</span></div>
+        </div>
+        <p class="desc">Know an organization, program, or event that belongs here? Let us know and we'll look into adding it.</p>
+        <form data-table="contact_messages" data-kind="resource" class="light-form">
+          <div class="field-row">
+            <div class="field"><label>Name</label><input name="name" required></div>
+            <div class="field"><label>Email</label><input name="email" type="email" required></div>
+          </div>
+          <div class="field"><label>What should we add?</label><textarea name="resource" rows="3" required placeholder="Organization or program name, what it offers, and how to reach it…"></textarea></div>
+          <button type="submit" class="btn secondary" style="width:100%;justify-content:center;">Submit Suggestion</button>
+          <p class="form-success">✓ Thank you! We'll take a look.</p>
+        </form>
+        <div class="meetup">
+          <h4>Host a Community Meetup</h4>
+          <p>Want to host a small gathering in District 11A? We'll help coordinate.</p>
+          <a href="#contact">Get in touch →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="sun">
+  <div class="container">
+    <div class="contact-card">
+      <div class="sec-head" style="margin-bottom:0;">
+        <div class="eyebrow" style="background:var(--navy);">Get in Touch</div>
+        <h2>Let's Connect</h2>
+        <p>Resource suggestions, event info, media inquiries, or ways to get involved — we'd love to hear from you.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="reach-box">
+          <h4>Reach Out</h4>
+          <div class="reach-row">
+            <a href="mailto:info@nicosanders.net">info@nicosanders.net</a>
+            <a href="tel:+14108035821">(410) 803-5821</a>
+          </div>
+          <p style="font-size:11px;color:var(--navy-soft);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;font-weight:700;">Social</p>
+          <div class="social-row">
+            <a href="https://www.facebook.com/nicosandersformddelegate" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://www.instagram.com/nicosandersformddelegate" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://x.com/nicosandersformddelegate" target="_blank" rel="noopener">X</a>
+            <a href="https://www.youtube.com/@nicosandersformddelegate" target="_blank" rel="noopener">YouTube</a>
+          </div>
+        </div>
+        <div class="msg-box">
+          <h4>Send a Message</h4>
+          <form data-table="contact_messages" data-kind="contact" class="light-form">
+            <div class="field-row">
+              <div class="field"><label>Name</label><input name="name" required></div>
+              <div class="field"><label>Email</label><input name="email" type="email" required></div>
+            </div>
+            <div class="field"><label>Message</label><textarea name="message" rows="4" required></textarea></div>
+            <button type="submit" class="btn primary" style="width:100%;justify-content:center;">Send Message</button>
+            <p class="form-success">✓ Thank you! We'll respond soon.</p>
+          </form>
+        </div>
+      </div>
+      <p style="text-align:center;font-size:11px;color:var(--navy-soft);margin-top:28px;">Need content in another format? Email us and we will accommodate.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <div class="brand" style="margin-bottom:10px;">
+        <span style="font-family:'Sora',sans-serif;font-weight:700;">Nico Sanders Community Outreach</span>
+      </div>
+      <p class="note">A neutral resource hub for residents of District 11A.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#about">Email Signup</a>
+      <a href="#resources">Resources</a>
+      <a href="#involved" class="highlight">Get Involved</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const SUPABASE_URL = "https://kheqibctakoejwobnmig.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtoZXFpYmN0YWtvZWp3b2JubWlnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1NDEyNTQsImV4cCI6MjA4ODExNzI1NH0.udD24MAiqQjFKq_nOkrd5B_G4cIMw4TG6iHmnC9agUM";
+async function submitTo(table, payload, btn, successEl) {
+  btn.disabled = true;
+  const original = btn.textContent;
+  btn.textContent = "Sending…";
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+      method: "POST",
+      headers: {
+        "apikey": SUPABASE_KEY,
+        "Authorization": `Bearer ${SUPABASE_KEY}`,
+        "Content-Type": "application/json",
+        "Prefer": "return=minimal"
+      },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error(await res.text());
+    successEl.style.display = "block";
+    btn.closest("form").reset();
+  } catch (err) {
+    alert("Something went wrong — please try again or email info@nicosanders.net.");
+    console.error(err);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = original;
+  }
+}
+document.querySelectorAll("form[data-table]").forEach(form => {
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const table = form.dataset.table;
+    const fd = new FormData(form);
+    let payload = {};
+    if (table === "campaign_joins") {
+      payload = { email: fd.get("email") };
+    } else if (table === "volunteer_signups") {
+      payload = { name: fd.get("name"), email: fd.get("email"), phone: fd.get("phone") || null, help_details: fd.get("help") || null };
+    } else if (table === "contact_messages") {
+      const isResource = form.dataset.kind === "resource";
+      payload = {
+        name: fd.get("name"),
+        email: fd.get("email"),
+        message: isResource ? `Resource suggestion: ${fd.get("resource")}` : fd.get("message")
+      };
+    }
+    const btn = form.querySelector("button[type=submit]");
+    const successEl = form.querySelector(".form-success");
+    submitTo(table, payload, btn, successEl);
+  });
+});
+</script>
+
+</body>
+</html>
