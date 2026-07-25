@@ -20,10 +20,10 @@ const BackendInfo = () => {
             Backend <span className="gradient-gold-text">Configuration</span>
           </h1>
           <p className="text-muted-foreground leading-relaxed mb-12 max-w-2xl">
-            This site is powered by <strong>Lovable Cloud</strong>, an integrated backend that
-            handles the database, authentication, file storage, and serverless functions. There is
-            no separately-managed external account—Lovable Cloud provisions and operates the
-            backend automatically as part of the project.
+            This site runs on an independently-owned <strong>Supabase</strong> project — a
+            managed Postgres database plus serverless edge functions. It is not tied to any
+            third-party app builder or shared account; the project is owned and controlled
+            directly by the site's operators.
           </p>
         </ScrollReveal>
 
@@ -35,14 +35,14 @@ const BackendInfo = () => {
               </div>
               <h2 className="font-display text-xl font-bold mb-2">Database</h2>
               <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                Stores submissions from the site's forms. Three tables are configured with
-                public-insert row-level security policies so visitors can submit without an
-                account, while reads stay restricted.
+                Stores submissions from the site's forms and the content behind the Resources
+                section. Row-level security policies scope each table to exactly what it needs.
               </p>
               <ul className="text-sm text-muted-foreground space-y-1.5">
-                <li className="flex gap-2"><span className="text-primary">•</span> campaign_joins — email signups</li>
-                <li className="flex gap-2"><span className="text-primary">•</span> contact_messages — contact form</li>
-                <li className="flex gap-2"><span className="text-primary">•</span> volunteer_signups — volunteer form</li>
+                <li className="flex gap-2"><span className="text-primary">•</span> campaign_joins — email signups (insert-only)</li>
+                <li className="flex gap-2"><span className="text-primary">•</span> contact_messages — contact &amp; resource suggestions (insert-only)</li>
+                <li className="flex gap-2"><span className="text-primary">•</span> volunteer_signups — volunteer form (insert-only)</li>
+                <li className="flex gap-2"><span className="text-primary">•</span> resources — Resources section content (public read-only)</li>
               </ul>
             </div>
           </ScrollReveal>
@@ -69,9 +69,10 @@ const BackendInfo = () => {
               </div>
               <h2 className="font-display text-xl font-bold mb-2">Security</h2>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Row-level security is enabled on every table. Public visitors can only insert
-                rows—nothing is publicly readable. Sensitive credentials (Resend, service-role
-                keys) live in encrypted secret storage and are never exposed to the browser.
+                Row-level security is enabled on every table. Form tables allow public inserts
+                only — nothing submitted by a visitor is publicly readable. The resources table
+                is the one exception, deliberately public read-only. The service-role key and
+                Resend API key live in encrypted secret storage and are never exposed to the browser.
               </p>
             </div>
           </ScrollReveal>
@@ -83,10 +84,11 @@ const BackendInfo = () => {
               </div>
               <h2 className="font-display text-xl font-bold mb-2">External Accounts</h2>
               <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                The backend is fully managed by Lovable Cloud—no separate Supabase, AWS, or
-                hosting account is linked. The only third-party services used are:
+                Two accounts power the backend, both owned directly rather than through a
+                third-party app builder:
               </p>
               <ul className="text-sm text-muted-foreground space-y-1.5">
+                <li className="flex gap-2"><span className="text-secondary">•</span> Supabase (database, auth, edge functions)</li>
                 <li className="flex gap-2"><span className="text-secondary">•</span> Resend (transactional email)</li>
               </ul>
             </div>
@@ -97,9 +99,8 @@ const BackendInfo = () => {
           <div className="bg-muted/40 border border-border rounded-xl p-6">
             <h3 className="font-display text-lg font-semibold mb-2">Managing the Backend</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Database tables, user records, and stored secrets can be reviewed and edited from
-              the Lovable editor under the <strong>Cloud</strong> view. No external dashboard
-              login is required.
+              Database tables, form submissions, resource entries, and stored secrets are all
+              managed directly from the Supabase dashboard for this project.
             </p>
           </div>
         </ScrollReveal>
