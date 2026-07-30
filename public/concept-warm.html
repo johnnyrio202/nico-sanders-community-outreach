@@ -96,8 +96,14 @@
 
   /* resources */
   .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-  .card{background:#fff;border-radius:26px;padding:32px 26px;box-shadow:0 10px 26px rgba(43,38,32,0.06);border:1px solid rgba(43,38,32,0.05);}
-  .card .icon{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px;}
+  .card{position:relative;overflow:hidden;background:#fff;border-radius:26px;padding:34px 26px 28px;box-shadow:0 10px 26px rgba(43,38,32,0.06);border:1px solid rgba(43,38,32,0.05);transition:transform .25s ease,box-shadow .25s ease;}
+  .card:hover{transform:translateY(-6px);box-shadow:0 22px 40px rgba(43,38,32,0.13);}
+  .card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;}
+  .card:nth-child(6n+1)::before,.card:nth-child(6n+4)::before{background:linear-gradient(90deg,var(--terracotta),var(--terracotta-deep));}
+  .card:nth-child(6n+2)::before,.card:nth-child(6n+5)::before{background:linear-gradient(90deg,var(--sage),var(--sage-deep));}
+  .card:nth-child(6n+3)::before,.card:nth-child(6n+6)::before{background:linear-gradient(90deg,#D4A03C,#B3841F);}
+  .card .icon{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px;transition:transform .25s ease;}
+  .card:hover .icon{transform:scale(1.08) rotate(-3deg);}
   .card:nth-child(6n+1) .icon,.card:nth-child(6n+4) .icon{background:rgba(193,89,42,0.12);}
   .card:nth-child(6n+2) .icon,.card:nth-child(6n+5) .icon{background:rgba(85,112,90,0.14);}
   .card:nth-child(6n+3) .icon,.card:nth-child(6n+6) .icon{background:rgba(212,160,60,0.16);}
@@ -105,6 +111,13 @@
   .card p{font-size:14.5px;line-height:1.6;color:var(--ink-soft);}
   .card p.card-intro{margin-bottom:16px;}
   .resource-list{list-style:none;border-top:1px solid rgba(43,38,32,0.08);padding-top:14px;}
+  .resource-item-extra{display:none;}
+  .resource-item-extra.is-visible{display:block;animation:itemReveal .3s ease;}
+  @keyframes itemReveal{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:translateY(0);}}
+  .resource-toggle{width:100%;background:none;border:none;cursor:pointer;padding:10px 0 0;font-family:'Figtree',sans-serif;font-size:12.5px;font-weight:700;color:var(--terracotta-deep);text-align:left;display:flex;align-items:center;gap:6px;}
+  .resource-toggle:hover{text-decoration:underline;}
+  .resource-toggle .chevron{display:inline-block;transition:transform .2s ease;font-size:10px;}
+  .resource-toggle[aria-expanded="true"] .chevron{transform:rotate(180deg);}
   .resource-item{padding:9px 0;border-bottom:1px solid rgba(43,38,32,0.06);}
   .resource-item:last-child{border-bottom:none;}
   .resource-item a.resource-title{font-weight:700;font-size:13.5px;color:var(--terracotta-deep);text-decoration:none;}
@@ -250,6 +263,9 @@
       <div class="card" data-category="Good Government"><div class="icon">🏛️</div><h3>Good Government</h3><p class="card-intro">Guides to state resources, constituent services, and getting help navigating local government.</p><ul class="resource-list" data-state="loading"><li class="resource-item">Loading resources…</li></ul></div>
       <div class="card" data-category="Small Business & Economy"><div class="icon">💼</div><h3>Small Business &amp; Economy</h3><p class="card-intro">Support and resources for entrepreneurs — procurement help, technical assistance, and more.</p><ul class="resource-list" data-state="loading"><li class="resource-item">Loading resources…</li></ul></div>
       <div class="card" data-category="Environment & Infrastructure"><div class="icon">🌳</div><h3>Environment &amp; Infrastructure</h3><p class="card-intro">Severe weather prep, stormwater resources, and information on protecting local green spaces.</p><ul class="resource-list" data-state="loading"><li class="resource-item">Loading resources…</li></ul></div>
+      <div class="card" data-category="Local Events"><div class="icon">📅</div><h3>Local Events</h3><p class="card-intro">Farmers markets, concerts on Main Street, and community gatherings happening around the district this summer.</p><ul class="resource-list" data-state="loading"><li class="resource-item">Loading resources…</li></ul></div>
+      <div class="card" data-category="Grants & Scholarships"><div class="icon">🎓</div><h3>Grants &amp; Scholarships</h3><p class="card-intro">Legislative scholarships, small business loans, and state grants residents and local organizations can apply for right now.</p><ul class="resource-list" data-state="loading"><li class="resource-item">Loading resources…</li></ul></div>
+      <div class="card" data-category="Community Organizations"><div class="icon">🤝</div><h3>Community Organizations</h3><p class="card-intro">Local associations and groups already doing the work — a good place to plug in, volunteer, or find out what's happening nearby.</p><ul class="resource-list" data-state="loading"><li class="resource-item">Loading resources…</li></ul></div>
     </div>
   </div>
 </section>
@@ -480,8 +496,9 @@ async function loadResources() {
       }
 
       list.dataset.state = "loaded";
-      list.innerHTML = items.map(r => `
-        <li class="resource-item">
+      const visibleCount = 3;
+      list.innerHTML = items.map((r, i) => `
+        <li class="resource-item${i >= visibleCount ? " resource-item-extra" : ""}">
           ${r.url
             ? `<a class="resource-title" href="${escapeHtml(r.url)}" target="_blank" rel="noopener">${escapeHtml(r.title)}</a>`
             : `<span class="resource-title">${escapeHtml(r.title)}</span>`}
@@ -489,6 +506,22 @@ async function loadResources() {
           ${r.phone ? `<a class="resource-phone" href="tel:${escapeHtml(r.phone.replace(/[^0-9+]/g, ""))}">${escapeHtml(r.phone)}</a>` : ""}
         </li>
       `).join("");
+
+      if (items.length > visibleCount) {
+        const hiddenCount = items.length - visibleCount;
+        const toggle = document.createElement("button");
+        toggle.type = "button";
+        toggle.className = "resource-toggle";
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.innerHTML = `Show ${hiddenCount} more <span class="chevron">▾</span>`;
+        toggle.addEventListener("click", () => {
+          const expanded = toggle.getAttribute("aria-expanded") === "true";
+          list.querySelectorAll(".resource-item-extra").forEach(li => li.classList.toggle("is-visible", !expanded));
+          toggle.setAttribute("aria-expanded", String(!expanded));
+          toggle.innerHTML = expanded ? `Show ${hiddenCount} more <span class="chevron">▾</span>` : `Show less <span class="chevron">▾</span>`;
+        });
+        list.after(toggle);
+      }
     });
   } catch (err) {
     console.error("Failed to load resources:", err);
