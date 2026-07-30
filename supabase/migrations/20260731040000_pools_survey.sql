@@ -1,0 +1,2 @@
+INSERT INTO public.resources (category, title, description, url, phone, sort_order) VALUES
+  ('Good Government', 'Pools Survey & Sessions', 'Baltimore County is taking over operations of the Dundalk and Randallstown Community Center pools and wants resident input on the path forward — take the online survey or attend a listening session.', 'https://www.baltimorecountymd.gov/departments/recreation-and-parks/aquatic-centers-and-programs', NULL, 9);
