@@ -556,24 +556,8 @@ async function loadResources() {
     if (categoryCountEl) categoryCountEl.textContent = new Set(rows.map(r => r.category)).size;
     if (resourceCountEl) resourceCountEl.textContent = rows.length;
 
-    // Smart auto-rotation: feature the 2 categories with the most resources,
-    // breaking ties by whichever has the most recently added item.
-    const byCategory = new Map();
-    rows.forEach(r => {
-      if (!byCategory.has(r.category)) byCategory.set(r.category, []);
-      byCategory.get(r.category).push(r);
-    });
-    const featuredCategories = new Set(
-      [...byCategory.entries()]
-        .sort((a, b) => {
-          if (b[1].length !== a[1].length) return b[1].length - a[1].length;
-          const aLatest = Math.max(...a[1].map(r => new Date(r.created_at).getTime()));
-          const bLatest = Math.max(...b[1].map(r => new Date(r.created_at).getTime()));
-          return bLatest - aLatest;
-        })
-        .slice(0, 2)
-        .map(([category]) => category)
-    );
+    // Fixed featured categories (auto-rotation considered and shelved for now — see reminder).
+    const featuredCategories = new Set(["Good Government", "Local Events"]);
 
     cards.forEach(card => {
       const category = card.dataset.category;
