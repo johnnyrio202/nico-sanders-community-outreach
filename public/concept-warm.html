@@ -67,6 +67,11 @@
   .sec-head .eyebrow{display:inline-flex;background:transparent;border-color:rgba(193,89,42,0.3);color:var(--terracotta-deep);}
   .sec-head h2{font-size:36px;font-weight:600;margin-bottom:12px;}
   .sec-head p{color:var(--ink-soft);font-size:15.5px;line-height:1.6;}
+  .share-row{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:20px;}
+  .share-label{font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink-soft);font-weight:700;margin-right:2px;}
+  .share-btn{font-family:'Figtree',sans-serif;font-size:12px;font-weight:600;color:var(--ink-soft);background:#fff;border:1px solid rgba(43,38,32,0.14);border-radius:999px;padding:8px 15px;text-decoration:none;cursor:pointer;transition:border-color .2s ease,color .2s ease;}
+  .share-btn:hover{border-color:var(--terracotta);color:var(--terracotta-deep);}
+  .share-btn[data-copied="true"]{border-color:var(--sage);color:var(--sage-deep);}
 
   /* at a glance */
   .glance-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
@@ -97,6 +102,7 @@
   .carousel img:nth-child(5){animation-delay:20s;}
   @keyframes xfade{0%{opacity:0;}4%{opacity:1;}20%{opacity:1;}24%{opacity:0;}100%{opacity:0;}}
   .about-grid p{color:var(--ink-soft);line-height:1.75;margin-bottom:14px;}
+  .about-grid p.signature{font-family:'Lora',serif;font-style:italic;font-size:17px;color:var(--ink);margin-bottom:22px;}
   .about-list{margin-top:22px;list-style:none;}
   .about-list li{display:flex;gap:12px;font-size:14px;color:var(--ink-soft);margin-bottom:13px;}
   .about-list li::before{content:'';width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:6px;}
@@ -294,6 +300,7 @@
       </div>
       <p>I have worked at the intersection of housing, health, and community safety. I have helped organizations serve people with complex needs, and I have partnered with residents, service providers, and public agencies to deliver real outcomes.</p>
       <p>This hub is where that work continues. It's a place to find real resources, hear what's happening around District 11A, and connect with the organizations already doing good work here.</p>
+      <p class="signature">— Nico Sanders</p>
       <ul class="about-list">
         <li>Show up consistently in District 11A and communicate clearly.</li>
         <li>Point neighbors toward real housing, health, and safety resources.</li>
@@ -322,6 +329,12 @@
       <div class="eyebrow">Resources</div>
       <h2 class="display">Resources for our community</h2>
       <p>Starting points for residents of District 11A. More will be added as we connect with neighbors and local organizations.</p>
+      <div class="share-row" data-share-section="resources">
+        <span class="share-label">Share this page</span>
+        <a class="share-btn" data-share="facebook" href="#" target="_blank" rel="noopener">Facebook</a>
+        <a class="share-btn" data-share="x" href="#" target="_blank" rel="noopener">X</a>
+        <button type="button" class="share-btn" data-share="copy">Copy Link</button>
+      </div>
     </div>
     <div class="card-grid" id="resource-cards">
       <div class="card" data-category="Housing & Cost of Living"><div class="card-head"><div class="icon">🏠</div><div class="card-head-text"><h3>Housing &amp; Cost of Living</h3><div class="count">Loading…</div></div><div class="chevron">▾</div></div><p class="card-intro">Find help with affordable housing, renter protections, energy bill assistance, and workforce housing near jobs.</p><ul class="resource-list" data-state="loading"><li class="resource-item">Loading resources…</li></ul></div>
@@ -627,6 +640,44 @@ async function loadResources() {
   }
 }
 loadResources();
+
+function initShareButtons() {
+  document.querySelectorAll(".share-row[data-share-section]").forEach(row => {
+    const section = row.dataset.shareSection;
+    const deepLink = `${location.origin}${location.pathname}#${section}`;
+    const shareText = "A community resource hub for District 11A, from Nico Sanders.";
+
+    const fb = row.querySelector('[data-share="facebook"]');
+    if (fb) fb.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(deepLink)}`;
+
+    const x = row.querySelector('[data-share="x"]');
+    if (x) x.href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(deepLink)}&text=${encodeURIComponent(shareText)}`;
+
+    const copyBtn = row.querySelector('[data-share="copy"]');
+    if (copyBtn) {
+      copyBtn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(deepLink);
+        } catch {
+          const temp = document.createElement("textarea");
+          temp.value = deepLink;
+          document.body.appendChild(temp);
+          temp.select();
+          document.execCommand("copy");
+          document.body.removeChild(temp);
+        }
+        const original = copyBtn.textContent;
+        copyBtn.textContent = "Copied!";
+        copyBtn.dataset.copied = "true";
+        setTimeout(() => {
+          copyBtn.textContent = original;
+          delete copyBtn.dataset.copied;
+        }, 2000);
+      });
+    }
+  });
+}
+initShareButtons();
 </script>
 
 </body>
