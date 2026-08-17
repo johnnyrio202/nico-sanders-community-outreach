@@ -52,7 +52,8 @@
   .event-card-body{padding:20px 22px 24px;}
   .event-card-date{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--terracotta-deep);margin-bottom:8px;}
   .event-card-body h3{font-family:'Lora',serif;font-size:17px;font-weight:600;line-height:1.35;margin-bottom:8px;}
-  .event-card-meta{font-size:13px;color:var(--ink-soft);line-height:1.5;margin-bottom:12px;}
+  .event-card-meta{font-size:13px;color:var(--ink-soft);line-height:1.5;margin-bottom:6px;}
+  .event-card-source{font-size:11px;color:var(--ink-soft);opacity:0.7;margin-bottom:12px;}
   .event-card-link{font-size:12.5px;font-weight:700;color:var(--terracotta-deep);}
   .events-empty{grid-column:1/-1;text-align:center;color:var(--ink-soft);font-size:14px;font-style:italic;padding:50px 0;}
 
@@ -152,9 +153,9 @@ async function loadCommunityEvents() {
     grid.innerHTML = upcoming.map(ev => {
       const d = new Date(`${ev.event_date}T00:00:00`);
       const dateLabel = d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
-      const icon = ev.media_type === "video" ? "🎥" : "📸";
+      const icon = ev.media_type === "video" ? "🎥" : ev.media_type === "listing" ? "🔗" : "📸";
       const metaParts = [ev.event_time, ev.location].filter(Boolean).join(" · ");
-      const linkLabel = ev.media_type === "video" ? "Watch on Instagram" : "View on Instagram";
+      const linkLabel = ev.media_type === "video" ? "Watch on Instagram" : ev.media_type === "listing" ? "View Event Details" : "View on Instagram";
       return `
         <a class="event-card" href="${escapeHtml(ev.url)}" target="_blank" rel="noopener">
           <div class="event-card-media">${icon}</div>
@@ -162,6 +163,7 @@ async function loadCommunityEvents() {
             <div class="event-card-date">${escapeHtml(dateLabel)}</div>
             <h3>${escapeHtml(ev.title)}</h3>
             ${metaParts ? `<p class="event-card-meta">${escapeHtml(metaParts)}</p>` : ""}
+            ${ev.source ? `<p class="event-card-source">${escapeHtml(ev.source)}</p>` : ""}
             <span class="event-card-link">${linkLabel} ↗</span>
           </div>
         </a>
