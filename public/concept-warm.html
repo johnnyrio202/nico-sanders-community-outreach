@@ -138,7 +138,7 @@
   .card:nth-child(6n+2) .icon,.card:nth-child(6n+5) .icon{background:rgba(85,112,90,0.14);}
   .card:nth-child(6n+3) .icon,.card:nth-child(6n+6) .icon{background:rgba(212,160,60,0.16);}
   .card-head-text{flex:1;min-width:0;}
-  .card h3{font-family:'Lora',serif;font-size:15.5px;font-weight:600;line-height:1.3;}
+  .card h3{font-family:'Lora',serif;font-size:15.5px;font-weight:600;line-height:1.3;overflow-wrap:break-word;}
   .card.featured h3{font-size:20px;}
   .card .count{font-size:11px;color:var(--ink-soft);font-weight:700;margin-top:2px;}
   .card:not(.featured) .chevron{font-size:11px;color:var(--ink-soft);transition:transform .2s ease;flex-shrink:0;}
@@ -163,20 +163,6 @@
   .resource-item a.resource-phone{display:inline-block;margin-top:4px;font-size:12px;font-weight:600;color:var(--sage-deep);text-decoration:none;}
   .resource-list[data-state="loading"] .resource-item,
   .resource-list[data-state="empty"] .resource-item{color:var(--ink-soft);font-size:12.5px;font-style:italic;border-bottom:none;padding:0;}
-
-  .events-carousel{position:relative;max-width:400px;margin:0 auto;}
-  .events-track-wrap{overflow:hidden;border-radius:18px;box-shadow:0 10px 26px rgba(43,38,32,0.1);}
-  .events-track{display:flex;transition:transform .45s cubic-bezier(.22,1,.36,1);}
-  .events-slide{flex:0 0 100%;background:#fff;}
-  .events-slide iframe{display:block;width:100%;height:720px;border:0;}
-  .events-nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:none;background:#fff;box-shadow:0 8px 18px rgba(43,38,32,0.18);cursor:pointer;font-size:20px;line-height:1;color:var(--ink);display:flex;align-items:center;justify-content:center;z-index:2;}
-  .events-nav:hover{background:var(--cream-deep);}
-  .events-nav.prev{left:10px;}
-  .events-nav.next{right:10px;}
-  .events-nav[hidden]{display:none;}
-  .events-dots{display:flex;justify-content:center;gap:8px;margin-top:18px;}
-  .events-dots button{width:8px;height:8px;padding:0;border-radius:50%;border:none;background:rgba(43,38,32,0.18);cursor:pointer;transition:all .2s ease;}
-  .events-dots button.active{background:var(--terracotta-deep);width:22px;border-radius:5px;}
 
   /* involved */
   .involved-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
@@ -211,6 +197,55 @@
   .footer-links a.highlight{background:var(--terracotta);color:#fff;border:none;}
   footer p.note{font-size:12px;color:rgba(251,245,234,0.5);max-width:420px;}
   footer .brand .name{color:#fff;}
+
+  /* nav toggle (mobile) */
+  .nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;width:40px;height:40px;padding:8px;flex-shrink:0;}
+  .nav-toggle span{display:block;width:100%;height:2px;background:var(--ink);border-radius:2px;transition:transform .2s ease,opacity .2s ease;}
+  .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-toggle.open span:nth-child(2){opacity:0;}
+  .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  /* responsive: tablet */
+  @media (max-width:900px){
+    header .row{position:relative;}
+    .nav-toggle{display:flex;}
+    nav{position:absolute;top:100%;left:0;right:0;background:var(--cream);flex-direction:column;align-items:stretch;gap:0;padding:0 20px;border-bottom:1px solid var(--border);box-shadow:0 14px 26px rgba(43,38,32,0.12);max-height:0;overflow:hidden;transition:max-height .3s ease;}
+    nav.open{max-height:600px;padding:10px 20px 20px;}
+    nav a{padding:13px 4px;border-radius:0;border-bottom:1px solid rgba(43,38,32,0.06);}
+    nav a.cta{margin:10px 0 0;text-align:center;border-radius:999px;border-bottom:none;}
+    nav a.cta.outline{margin-top:8px;}
+
+    .hero-grid{grid-template-columns:1fr;gap:36px;}
+    .hero-photo{order:-1;width:100%;max-width:280px;margin:0 auto;}
+    h1{font-size:36px;}
+    .hero{padding:44px 0 52px;}
+    .stats{flex-wrap:wrap;row-gap:16px;}
+
+    .about-grid{grid-template-columns:1fr;gap:36px;}
+    .carousel{margin-left:auto;margin-right:auto;}
+
+    .card-grid{grid-template-columns:repeat(2,1fr);grid-auto-flow:row;}
+    .card.featured,.card:not(.featured):last-child{grid-column:span 1;grid-row:span 1;}
+
+    .involved-grid{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+
+    section{padding:56px 0 52px;}
+    .sec-head{margin-bottom:36px;}
+    .sec-head h2{font-size:28px;}
+  }
+
+  /* responsive: mobile */
+  @media (max-width:600px){
+    .container{padding:0 20px;}
+    .contact-card{padding:28px 22px;}
+    .stay-card{padding:26px 22px;}
+    .involved-card{padding:26px 22px;}
+    .field-row{grid-template-columns:1fr;}
+    .glance-grid{grid-template-columns:1fr;}
+    .card-grid{grid-template-columns:1fr;}
+    h1{font-size:30px;}
+  }
 </style>
 </head>
 <body>
@@ -225,7 +260,7 @@
         <div class="tag">Community Outreach · District 11A</div>
       </div>
     </a>
-    <nav>
+    <nav id="siteNav">
       <a href="#about">About</a>
       <a href="#resources">Resources</a>
       <a href="/events">Events</a>
@@ -234,6 +269,9 @@
       <a href="#resources" class="cta outline">Explore Resources</a>
       <a href="#involved" class="cta">Get Involved</a>
     </nav>
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="siteNav">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -365,28 +403,7 @@
   </div>
 </section>
 
-<section id="events" class="card-bg">
-  <div class="container">
-    <div class="sec-head">
-      <div class="eyebrow">🎥 Featured Community Events</div>
-      <h2 class="display">See it in action</h2>
-      <p>A look at recent gatherings and events around District 11A, straight from the community.</p>
-    </div>
-    <div class="events-carousel">
-      <div class="events-track-wrap">
-        <div class="events-track" id="events-track"></div>
-      </div>
-      <button type="button" class="events-nav prev" aria-label="Previous video">‹</button>
-      <button type="button" class="events-nav next" aria-label="Next video">›</button>
-      <div class="events-dots" id="events-dots"></div>
-    </div>
-    <div style="text-align:center;margin-top:36px;">
-      <a href="/events" class="btn secondary">See the Full Events Calendar →</a>
-    </div>
-  </div>
-</section>
-
-<section id="involved" class="deep">
+<section id="involved" class="card-bg">
   <div class="container">
     <div class="involved-grid">
       <div class="involved-card">
@@ -431,7 +448,7 @@
   </div>
 </section>
 
-<section id="contact" class="card-bg">
+<section id="contact" class="deep">
   <div class="container">
     <div class="contact-card">
       <div class="sec-head" style="margin-bottom:0;">
@@ -677,52 +694,6 @@ async function loadResources() {
 }
 loadResources();
 
-// Add another entry here to feature more event videos in the carousel.
-const communityEvents = [
-  { id: "DcGrAdDRDi0", label: "hhmuddytea community event" },
-];
-
-function initEventsCarousel() {
-  const track = document.getElementById("events-track");
-  const dotsWrap = document.getElementById("events-dots");
-  const prevBtn = document.querySelector(".events-nav.prev");
-  const nextBtn = document.querySelector(".events-nav.next");
-  if (!track || communityEvents.length === 0) return;
-
-  track.innerHTML = communityEvents.map(ev => `
-    <div class="events-slide">
-      <iframe
-        src="https://www.instagram.com/reel/${ev.id}/embed/"
-        title="${escapeHtml(ev.label)}"
-        loading="lazy"
-        allowtransparency="true"
-        scrolling="no"
-      ></iframe>
-    </div>
-  `).join("");
-
-  let index = 0;
-  const total = communityEvents.length;
-
-  function update() {
-    track.style.transform = `translateX(-${index * 100}%)`;
-    dotsWrap.querySelectorAll("button").forEach((d, i) => d.classList.toggle("active", i === index));
-  }
-
-  if (total > 1) {
-    dotsWrap.innerHTML = communityEvents.map((_, i) => `<button type="button" aria-label="Go to video ${i + 1}"></button>`).join("");
-    dotsWrap.querySelectorAll("button").forEach((d, i) => d.addEventListener("click", () => { index = i; update(); }));
-    prevBtn.addEventListener("click", () => { index = (index - 1 + total) % total; update(); });
-    nextBtn.addEventListener("click", () => { index = (index + 1) % total; update(); });
-  } else {
-    prevBtn.hidden = true;
-    nextBtn.hidden = true;
-  }
-
-  update();
-}
-initEventsCarousel();
-
 function initShareButtons() {
   document.querySelectorAll(".share-row[data-share-section]").forEach(row => {
     const section = row.dataset.shareSection;
@@ -760,6 +731,20 @@ function initShareButtons() {
   });
 }
 initShareButtons();
+
+function initNavToggle() {
+  const navToggle = document.getElementById("navToggle");
+  const siteNav = document.getElementById("siteNav");
+  if (!navToggle || !siteNav) return;
+  const setOpen = (open) => {
+    siteNav.classList.toggle("open", open);
+    navToggle.classList.toggle("open", open);
+    navToggle.setAttribute("aria-expanded", String(open));
+  };
+  navToggle.addEventListener("click", () => setOpen(!siteNav.classList.contains("open")));
+  siteNav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => setOpen(false)));
+}
+initNavToggle();
 </script>
 
 </body>
