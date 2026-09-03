@@ -608,8 +608,7 @@ async function loadResources() {
     if (categoryCountEl) categoryCountEl.textContent = new Set(rows.map(r => r.category)).size;
     if (resourceCountEl) resourceCountEl.textContent = rows.length;
 
-    // Fixed featured categories (auto-rotation considered and shelved for now — see reminder).
-    const featuredCategories = new Set(["Local Events"]);
+    const featuredCategories = new Set();
 
     cards.forEach(card => {
       const category = card.dataset.category;
