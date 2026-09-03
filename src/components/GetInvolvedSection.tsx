@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+import { notifyEmail } from "@/lib/notify";
 import { ArrowRight, Users, Lightbulb } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
@@ -18,23 +18,14 @@ const GetInvolvedSection = () => {
     const help = formData.get("help") as string;
 
     try {
-      const { error } = await supabase.from("volunteer_signups").insert({
-        name,
-        email,
-        phone: phone || null,
-        help_details: help || null,
+      const res = await fetch("/api/volunteer_signups", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, phone: phone || null, help_details: help || null }),
       });
-      if (error) throw error;
+      if (!res.ok) throw new Error(await res.text());
 
-      // Trigger email notification
-      supabase.functions.invoke("send-contact-email", {
-        body: {
-          name,
-          email,
-          message: `Phone: ${phone || "N/A"}\nHow they want to help: ${help || "N/A"}`,
-          type: "volunteer",
-        },
-      });
+      notifyEmail("volunteer", name, email, `Phone: ${phone || "N/A"}\nHow they want to help: ${help || "N/A"}`);
 
       setVolDone(true);
       toast.success("Thank you for volunteering!");
@@ -54,16 +45,15 @@ const GetInvolvedSection = () => {
     const resource = formData.get("resource") as string;
 
     try {
-      const { error } = await supabase.from("contact_messages").insert({
-        name,
-        email,
-        message: `Resource suggestion: ${resource}`,
+      const message = `Resource suggestion: ${resource}`;
+      const res = await fetch("/api/contact_messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
       });
-      if (error) throw error;
+      if (!res.ok) throw new Error(await res.text());
 
-      supabase.functions.invoke("send-contact-email", {
-        body: { name, email, message: `Resource suggestion: ${resource}`, type: "resource" },
-      });
+      notifyEmail("resource", name, email, message);
 
       setResourceDone(true);
       toast.success("Thanks for the suggestion!");

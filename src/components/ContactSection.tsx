@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { Mail, Send, Copy, Check } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { notifyEmail, notifyAdminAlert } from "@/lib/notify";
 import ScrollReveal from "./ScrollReveal";
 
 const CAMPAIGN_EMAIL = "info@nicosanders.net";
@@ -30,16 +30,18 @@ const ContactSection = () => {
     const message = formData.get("message") as string;
 
     try {
-      const { error } = await supabase.from("contact_messages").insert({ name, email, message });
-      if (error) {
-        console.error("DB insert error:", error);
-        throw new Error(error.message);
+      const res = await fetch("/api/contact_messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+      if (!res.ok) {
+        const text = await res.text();
+        console.error("DB insert error:", text);
+        throw new Error(text);
       }
 
-      const { error: fnError } = await supabase.functions.invoke("send-contact-email", {
-        body: { name, email, message, type: "contact" },
-      });
-      if (fnError) console.warn("Email notification failed:", fnError);
+      await notifyEmail("contact", name, email, message);
 
       setSent(true);
       toast.success("Message sent! We'll get back to you.");
@@ -49,9 +51,7 @@ const ContactSection = () => {
       console.error("Contact form error:", msg);
       setFormError(`Something went wrong — please try again or email us directly at ${CAMPAIGN_EMAIL}`);
       toast.error("Message failed to send.");
-      supabase.functions.invoke("send-admin-alert", {
-        body: { error: msg, context: "contact form submission", userName: name, userEmail: email },
-      }).catch(() => {});
+      notifyAdminAlert(msg, "contact form submission", name, email);
     } finally {
       setSubmitting(false);
     }

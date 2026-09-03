@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+import { notifyEmail } from "@/lib/notify";
 import nicoDailyRecord from "@/assets/nico-daily-record.jpeg";
 import nicoFamily from "@/assets/nico-family.jpeg";
 import nicoCommunity from "@/assets/nico-community.jpeg";
@@ -36,13 +36,14 @@ const AboutSection = () => {
     const email = formData.get("email") as string;
 
     try {
-      const { error } = await supabase.from("campaign_joins").insert({ email });
-      if (error) throw error;
-
-      // Trigger email notification
-      supabase.functions.invoke("send-contact-email", {
-        body: { name: "Campaign Signup", email, message: `New campaign email signup: ${email}`, type: "join" },
+      const res = await fetch("/api/campaign_joins", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
       });
+      if (!res.ok) throw new Error(await res.text());
+
+      notifyEmail("join", "Campaign Signup", email, `New campaign email signup: ${email}`);
 
       setSignupDone(true);
       toast.success("Thank you for signing up!");
