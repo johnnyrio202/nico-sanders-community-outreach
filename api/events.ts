@@ -8,7 +8,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const sql = getSql();
   const rows = await sql`
-    SELECT title, event_date, event_time, location, media_type, source, url, image_url
+    SELECT title, to_char(event_date, 'YYYY-MM-DD') AS event_date, event_time, location, media_type, source, url, image_url
     FROM community_events
     WHERE event_date >= CURRENT_DATE
     ORDER BY event_date ASC
