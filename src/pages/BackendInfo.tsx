@@ -20,11 +20,11 @@ const BackendInfo = () => {
             Backend <span className="gradient-gold-text">Configuration</span>
           </h1>
           <p className="text-muted-foreground leading-relaxed mb-12 max-w-2xl">
-            This site's data runs on <strong>Neon Postgres</strong> via Vercel, reached through
-            a small set of serverless API routes (<code className="text-xs bg-muted px-1.5 py-0.5 rounded">/api/*</code>).
-            Event thumbnails and email notifications still run through an independently-owned{" "}
-            <strong>Supabase</strong> project (storage bucket + edge functions). Nothing here is
-            tied to a third-party app builder or shared account.
+            This site runs entirely on Vercel — <strong>Neon Postgres</strong> for data and{" "}
+            <strong>Vercel Blob</strong> for event thumbnails, both reached through a small set
+            of serverless API routes (<code className="text-xs bg-muted px-1.5 py-0.5 rounded">/api/*</code>).
+            Email notifications go out through <strong>Resend</strong>. Nothing here is tied to
+            a third-party app builder or shared account.
           </p>
         </ScrollReveal>
 
@@ -57,7 +57,7 @@ const BackendInfo = () => {
               </div>
               <h2 className="font-display text-xl font-bold mb-2">Email Notifications</h2>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                A serverless edge function (<code className="text-xs bg-muted px-1.5 py-0.5 rounded">send-contact-email</code>)
+                A Vercel Function (<code className="text-xs bg-muted px-1.5 py-0.5 rounded">/api/send-contact-email</code>)
                 sends notifications whenever someone signs up, volunteers, or
                 submits the contact form. Email delivery uses <strong>Resend</strong> via a
                 stored API key.
@@ -72,11 +72,10 @@ const BackendInfo = () => {
               </div>
               <h2 className="font-display text-xl font-bold mb-2">Security</h2>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                The database connection string is a server-only environment variable, never
-                exposed to the browser. Each API route only performs the one operation it's
-                meant to — form routes only insert, and nothing submitted by a visitor is
-                publicly readable back out. The Resend API key lives in Supabase's encrypted
-                secret storage.
+                The database connection string, Blob token, and Resend API key are all
+                server-only environment variables, never exposed to the browser. Each API route
+                only performs the one operation it's meant to — form routes only insert, and
+                nothing submitted by a visitor is publicly readable back out.
               </p>
             </div>
           </ScrollReveal>
@@ -88,12 +87,11 @@ const BackendInfo = () => {
               </div>
               <h2 className="font-display text-xl font-bold mb-2">External Accounts</h2>
               <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                Three accounts power the backend, all owned directly rather than through a
+                Two accounts power the backend, both owned directly rather than through a
                 third-party app builder:
               </p>
               <ul className="text-sm text-muted-foreground space-y-1.5">
-                <li className="flex gap-2"><span className="text-secondary">•</span> Neon via Vercel Marketplace (database)</li>
-                <li className="flex gap-2"><span className="text-secondary">•</span> Supabase (event-media storage, edge functions)</li>
+                <li className="flex gap-2"><span className="text-secondary">•</span> Vercel (Neon database + Blob storage, via Marketplace)</li>
                 <li className="flex gap-2"><span className="text-secondary">•</span> Resend (transactional email)</li>
               </ul>
             </div>
@@ -104,9 +102,9 @@ const BackendInfo = () => {
           <div className="bg-muted/40 border border-border rounded-xl p-6">
             <h3 className="font-display text-lg font-semibold mb-2">Managing the Backend</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Database tables, form submissions, and resource entries are managed via the Neon
-              dashboard (through Vercel) or directly with SQL. Event thumbnails and the Resend
-              secret are still managed from the Supabase dashboard for this project.
+              Database tables, form submissions, resource entries, and event thumbnails are all
+              managed via the Vercel dashboard (Neon and Blob) or directly with SQL. The Resend
+              API key is set as a Vercel environment variable.
             </p>
           </div>
         </ScrollReveal>

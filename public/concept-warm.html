@@ -506,15 +506,11 @@
 </footer>
 
 <script>
-const SUPABASE_URL = "https://sldlxxcyhgccattpllqm.supabase.co";
-const SUPABASE_KEY = "sb_publishable_hy9RJt27sqlLptRPY34sYg_tDoDx7K_";
 async function notifyEmail(type, name, email, message) {
   try {
-    const res = await fetch(`${SUPABASE_URL}/functions/v1/send-contact-email`, {
+    const res = await fetch(`/api/send-contact-email`, {
       method: "POST",
       headers: {
-        "apikey": SUPABASE_KEY,
-        "Authorization": `Bearer ${SUPABASE_KEY}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ name, email, message, type })
@@ -526,11 +522,9 @@ async function notifyEmail(type, name, email, message) {
 }
 
 function notifyAdminAlert(errorMessage, context, userName, userEmail) {
-  fetch(`${SUPABASE_URL}/functions/v1/send-admin-alert`, {
+  fetch(`/api/send-admin-alert`, {
     method: "POST",
     headers: {
-      "apikey": SUPABASE_KEY,
-      "Authorization": `Bearer ${SUPABASE_KEY}`,
       "Content-Type": "application/json"
     },
     body: JSON.stringify({ error: errorMessage, context, userName, userEmail })
