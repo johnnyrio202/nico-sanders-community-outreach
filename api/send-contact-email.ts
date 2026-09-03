@@ -33,7 +33,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     <p><strong>Message:</strong></p>
     <p>${message}</p>
     <hr/>
-    <p style="color:#888;font-size:12px;">Sent from nicoformddelegate.com</p>
+    <p style="color:#888;font-size:12px;">Sent from nicosanders.net</p>
   `;
 
   const resendRes = await fetch('https://api.resend.com/emails', {
@@ -43,8 +43,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: 'Campaign Website <notifications@nicoformddelegate.com>',
-      to: ['info@nicoformddelegate.com', 'nicosanders@me.com'],
+      from: 'Campaign Website <notifications@nicosanders.net>',
+      to: ['info@nicosanders.net', 'nicosanders@me.com'],
       subject,
       html: htmlBody,
       reply_to: email,

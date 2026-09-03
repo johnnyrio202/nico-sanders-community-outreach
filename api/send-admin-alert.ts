@@ -23,7 +23,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     ${userName ? `<p><strong>User name:</strong> ${userName}</p>` : ''}
     ${userEmail ? `<p><strong>User email:</strong> ${userEmail}</p>` : ''}
     <hr/>
-    <p style="color:#888;font-size:12px;">This is an automated alert from nicoformddelegate.com. A visitor tried to submit the contact form but encountered an error. Please check the Neon dashboard for more details.</p>
+    <p style="color:#888;font-size:12px;">This is an automated alert from nicosanders.net. A visitor tried to submit the contact form but encountered an error. Please check the Neon dashboard for more details.</p>
   `;
 
   const resendRes = await fetch('https://api.resend.com/emails', {
@@ -33,9 +33,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: 'Campaign Website <notifications@nicoformddelegate.com>',
-      to: ['info@nicoformddelegate.com'],
-      subject: '⚠️ Contact Form Error on nicoformddelegate.com',
+      from: 'Campaign Website <notifications@nicosanders.net>',
+      to: ['info@nicosanders.net'],
+      subject: '⚠️ Contact Form Error on nicosanders.net',
       html,
     }),
   });
