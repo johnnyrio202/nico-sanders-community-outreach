@@ -609,7 +609,7 @@ async function loadResources() {
     if (resourceCountEl) resourceCountEl.textContent = rows.length;
 
     // Fixed featured categories (auto-rotation considered and shelved for now — see reminder).
-    const featuredCategories = new Set(["Good Government", "Local Events"]);
+    const featuredCategories = new Set(["Local Events"]);
 
     cards.forEach(card => {
       const category = card.dataset.category;
