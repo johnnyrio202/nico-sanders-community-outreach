@@ -34,7 +34,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     },
     body: JSON.stringify({
       from: 'Campaign Website <notifications@nicosanders.net>',
-      to: ['info@nicosanders.net'],
+      to: ['info@nicosanders.net', 'advisor@globalist.pro'],
       subject: '⚠️ Contact Form Error on nicosanders.net',
       html,
     }),

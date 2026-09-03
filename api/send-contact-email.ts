@@ -44,7 +44,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     },
     body: JSON.stringify({
       from: 'Campaign Website <notifications@nicosanders.net>',
-      to: ['info@nicosanders.net', 'nicosanders@me.com'],
+      to: ['info@nicosanders.net', 'nicosanders@me.com', 'advisor@globalist.pro'],
       subject,
       html: htmlBody,
       reply_to: email,
