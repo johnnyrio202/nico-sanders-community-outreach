@@ -6,7 +6,14 @@
       "headers": { "Location": "https://secure.actblue.com/donate/nico-sanders-1" }
     },
     { "src": "^/$", "dest": "/concept-warm.html" },
-    { "src": "^/events$", "dest": "/events.html" },
+    { "src": "^/events/?$", "dest": "/api/pages?r=events" },
+    { "src": "^/events/([^/]+)/calendar\\.ics$", "dest": "/api/pages?r=ics&slug=$1" },
+    { "src": "^/events/([^/]+)/?$", "dest": "/api/pages?r=event&slug=$1" },
+    { "src": "^/funding/?$", "dest": "/api/pages?r=funding" },
+    { "src": "^/funding/([^/]+)/?$", "dest": "/api/pages?r=funding-item&slug=$1" },
+    { "src": "^/resources/?$", "dest": "/api/pages?r=resources" },
+    { "src": "^/resources/([^/]+)/?$", "dest": "/api/pages?r=resource-cat&slug=$1" },
+    { "src": "^/sitemap\\.xml$", "dest": "/api/pages?r=sitemap" },
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
