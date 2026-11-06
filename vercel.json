@@ -1,20 +1,78 @@
 {
   "routes": [
     {
+      "src": "/(.*)",
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+      },
+      "continue": true
+    },
+    {
+      "src": "^/(?:concept-warm\\.html)?$",
+      "headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.public.blob.vercel-storage.com; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'"
+      },
+      "continue": true
+    },
+    {
+      "src": "^/(?:events|funding|resources)(?:/.*)?$",
+      "headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.public.blob.vercel-storage.com; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'"
+      },
+      "continue": true
+    },
+    {
       "src": "^/donate$",
       "status": 301,
-      "headers": { "Location": "https://secure.actblue.com/donate/nico-sanders-1" }
+      "headers": {
+        "Location": "https://secure.actblue.com/donate/nico-sanders-1"
+      }
     },
-    { "src": "^/$", "dest": "/concept-warm.html" },
-    { "src": "^/events/?$", "dest": "/api/pages?r=events" },
-    { "src": "^/events/([^/]+)/calendar\\.ics$", "dest": "/api/pages?r=ics&slug=$1" },
-    { "src": "^/events/([^/]+)/?$", "dest": "/api/pages?r=event&slug=$1" },
-    { "src": "^/funding/?$", "dest": "/api/pages?r=funding" },
-    { "src": "^/funding/([^/]+)/?$", "dest": "/api/pages?r=funding-item&slug=$1" },
-    { "src": "^/resources/?$", "dest": "/api/pages?r=resources" },
-    { "src": "^/resources/([^/]+)/?$", "dest": "/api/pages?r=resource-cat&slug=$1" },
-    { "src": "^/sitemap\\.xml$", "dest": "/api/pages?r=sitemap" },
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/index.html" }
+    {
+      "src": "^/$",
+      "dest": "/concept-warm.html"
+    },
+    {
+      "src": "^/events/?$",
+      "dest": "/api/pages?r=events"
+    },
+    {
+      "src": "^/events/([^/]+)/calendar\\.ics$",
+      "dest": "/api/pages?r=ics&slug=$1"
+    },
+    {
+      "src": "^/events/([^/]+)/?$",
+      "dest": "/api/pages?r=event&slug=$1"
+    },
+    {
+      "src": "^/funding/?$",
+      "dest": "/api/pages?r=funding"
+    },
+    {
+      "src": "^/funding/([^/]+)/?$",
+      "dest": "/api/pages?r=funding-item&slug=$1"
+    },
+    {
+      "src": "^/resources/?$",
+      "dest": "/api/pages?r=resources"
+    },
+    {
+      "src": "^/resources/([^/]+)/?$",
+      "dest": "/api/pages?r=resource-cat&slug=$1"
+    },
+    {
+      "src": "^/sitemap\\.xml$",
+      "dest": "/api/pages?r=sitemap"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
   ]
 }

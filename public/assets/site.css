@@ -499,3 +499,5 @@ section{padding:60px 0}
 .social{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px}.social a{font-weight:700;color:var(--navy)}
 footer a{color:inherit}
 .fl{display:flex;gap:18px;flex-wrap:wrap}
+
+.hp{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}

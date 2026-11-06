@@ -73,9 +73,7 @@ ${o.jsonld ? `<script type="application/ld+json">${JSON.stringify(o.jsonld).repl
 </div>
 <main class="pg"><div class="wrap">${o.body}</div></main>
 <footer><div class="wrap"><span>© Nico Sanders Community Outreach · District 11A</span><span class="fl"><a href="/events">Events</a><a href="/funding">Funding &amp; jobs</a><a href="/resources">Resources</a><a href="mailto:info@nicosanders.net">info@nicosanders.net</a></span></div></footer>
-<script>
-document.getElementById('menuBtn').onclick=function(){var m=document.getElementById('mnav');m.hidden=!m.hidden;this.setAttribute('aria-expanded',String(!m.hidden))};
-</script>
+<script src="/assets/menu.js" defer></script>
 </body>
 </html>`;
 }
