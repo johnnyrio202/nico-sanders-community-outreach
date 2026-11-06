@@ -501,3 +501,14 @@ footer a{color:inherit}
 .fl{display:flex;gap:18px;flex-wrap:wrap}
 
 .hp{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+
+/* communities section */
+.comm{background:var(--paper);border-top:1px solid var(--line);padding:56px 0}
+.pills{list-style:none;display:flex;flex-wrap:wrap;gap:12px;margin-bottom:34px}
+.pills li{background:var(--cream);border:2px solid var(--navy);color:var(--navy);font-weight:800;font-size:15px;letter-spacing:.02em;padding:10px 20px;border-radius:99px}
+.comm-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px}
+.comm-cols h3{font-size:20px;margin-bottom:8px;color:var(--navy)}
+.comm-cols .plain{list-style:none;display:grid;gap:6px;color:var(--soft)}
+.comm-cols .plain li::before{content:"";display:inline-block;width:8px;height:8px;margin-right:10px;border-radius:50%;background:var(--terra)}
+.comm-cols p{color:var(--soft);font-size:15px}.comm-cols a{color:var(--terra-d)}
+@media(max-width:700px){.comm{padding:40px 0}.pills li{font-size:14px;padding:8px 16px}}

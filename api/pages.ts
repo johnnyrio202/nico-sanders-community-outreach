@@ -78,7 +78,7 @@ async function eventsList(req: VercelRequest, res: VercelResponse) {
   if (past.length) body += `<h2 class="d sec-h">Recently past</h2><div class="list">${past.map((e) => evCard(e, true)).join('')}</div>`;
   return html(res, page({
     title: 'Community Events in District 11A | Nico Sanders Community Outreach',
-    description: 'Upcoming community events around Reisterstown, Owings Mills and Northwest Baltimore County: fundraisers, food help, meetings, music and more, with links back to each source.',
+    description: 'Upcoming community events across District 11A, including Owings Mills, Reisterstown, Randallstown, Pikesville, Glyndon and Mays Chapel: fundraisers, food help, meetings, music and more, with links back to each source.',
     path: '/events', heading: 'Community events', lede: 'What is happening around District 11A. Every listing links back to the organizer for the latest details.',
     crumbs: [['/events', 'Events']], body,
   }));
@@ -168,7 +168,7 @@ async function resourcesIndex(res: VercelResponse) {
   const body = `<div class="rgrid">${cats.map((c) => { const n = rs.filter((r) => r.category === c).length; return `<a class="res" href="/resources/${slugify(c)}"><span class="ic">${esc(c[0])}</span><h3 class="d">${esc(c)}</h3><p>${esc(CAT_BLURB[c] || '')}</p><span class="n">${n} resource${n === 1 ? '' : 's'} →</span></a>`; }).join('')}</div>`;
   return html(res, page({
     title: 'Community Resources for District 11A | Nico Sanders Community Outreach',
-    description: 'Housing help, mental health support, schools, small business, grants, local government and more, curated for Reisterstown, Owings Mills and Northwest Baltimore County.',
+    description: 'Housing help, mental health support, schools, small business, grants, local government and more, curated for Owings Mills, Reisterstown, Randallstown, Pikesville, Glyndon and Mays Chapel.',
     path: '/resources', heading: 'Help that is one tap away', lede: 'Curated links and contacts for District 11A, grouped by what you need.',
     crumbs: [['/resources', 'Resources']], body,
   }));
