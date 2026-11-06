@@ -194,8 +194,7 @@ async function sitemap(res: VercelResponse) {
   const lines = [u('/', 'weekly', '1.0'), u('/events', 'daily', '0.9'), u('/funding', 'weekly', '0.9'), u('/resources', 'weekly', '0.8'),
     ...ev.filter((e) => e.event_date >= today).map((e) => u(`/events/${e.slug}`, 'weekly', '0.7')),
     ...fu.filter((f) => !f.deadline || f.deadline >= today).map((f) => u(`/funding/${f.slug}`, 'weekly', '0.6')),
-    ...[...new Set(rs.map((r) => r.category))].map((c) => u(`/resources/${slugify(c)}`, 'monthly', '0.6')),
-    u('/backend-info', 'monthly', '0.2')];
+    ...[...new Set(rs.map((r) => r.category))].map((c) => u(`/resources/${slugify(c)}`, 'monthly', '0.6'))];
   res.setHeader('Content-Type', 'application/xml; charset=utf-8');
   res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=86400');
   return res.status(200).send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${lines.join('\n')}\n</urlset>\n`);

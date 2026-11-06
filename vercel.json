@@ -71,8 +71,14 @@
       "handle": "filesystem"
     },
     {
-      "src": "/(.*)",
+      "src": "^/backend-info/?$",
+      "headers": { "X-Robots-Tag": "noindex, nofollow" },
       "dest": "/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "status": 404,
+      "dest": "/404.html"
     }
   ]
 }
