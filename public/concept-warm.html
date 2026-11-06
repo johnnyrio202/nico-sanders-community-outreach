@@ -308,11 +308,12 @@ $('#q').addEventListener('input',e=>{
 
 /* ===== premium features ===== */
 const GALLERY=[
- {src:"img/nico-daily-record.jpeg",cap:"Receiving an award from The Daily Record"},
- {src:"img/nico-elections.jpeg",cap:"At the Maryland State Board of Elections"},
- {src:"img/nico-ravens.jpg",cap:"At a Ravens game"},
- {src:"img/nico-family.jpeg",cap:"With his family"},
- {src:"img/nico-community.jpeg",cap:"Out in the community"}
+ {src:"/concept-assets/nico-daily-record.jpeg",cap:"Receiving an award from The Daily Record"},
+ {src:"/concept-assets/nico-elections.jpeg",cap:"At the Maryland State Board of Elections"},
+ {src:"/concept-assets/nico-ravens.jpg",cap:"At a Ravens game"},
+ {src:"/concept-assets/nico-family.jpeg",cap:"With his family"},
+ {src:"/concept-assets/nico-community.jpeg",cap:"Out in the community"},
+ {src:"/concept-assets/nico-family-holiday.jpg",cap:"Holiday with family"}
 ];
 $('#gal').innerHTML=GALLERY.map((g,i)=>`<button class="gph" data-g="${i}" aria-label="Enlarge photo: ${esc(g.cap)}"><img src="${g.src}" alt="${esc(g.cap)}" loading="lazy"></button>`).join('');
 const step=()=>Math.max(260,$('#gal').clientWidth*.8);
