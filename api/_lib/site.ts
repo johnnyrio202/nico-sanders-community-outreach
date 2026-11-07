@@ -72,7 +72,7 @@ ${o.jsonld ? `<script type="application/ld+json">${JSON.stringify(o.jsonld).repl
   <section class="phead"><div class="wrap">${crumbs}<h1 class="d">${esc(o.heading)}</h1>${o.lede ? `<p>${esc(o.lede)}</p>` : ''}</div></section>
 </div>
 <main class="pg"><div class="wrap">${o.body}</div></main>
-<footer><div class="wrap"><span>© Nico Sanders Community Outreach · District 11A</span><span class="fl"><a href="/events">Events</a><a href="/funding">Funding &amp; jobs</a><a href="/resources">Resources</a><a href="mailto:info@nicosanders.net">info@nicosanders.net</a></span></div></footer>
+<footer><div class="wrap"><span>© Nico Sanders Community Outreach · District 11A · Powered by <a href="https://globalist.pro" target="_blank" rel="noopener">Globalist Pro</a></span><span class="fl"><a href="/events">Events</a><a href="/funding">Funding &amp; jobs</a><a href="/resources">Resources</a><a href="mailto:info@nicosanders.net">info@nicosanders.net</a></span></div></footer>
 <script src="/assets/menu.js" defer></script>
 </body>
 </html>`;
