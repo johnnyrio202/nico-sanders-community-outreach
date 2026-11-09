@@ -1,0 +1,16 @@
+# Nico Sanders Community Outreach
+
+> A free community resource hub for Maryland Legislative District 11A in Baltimore County: local events, grants and job opportunities, and housing, mental health, school and small business resources. Covers Owings Mills, Randallstown, Pikesville, Reisterstown, Glyndon and Mays Chapel. Every listing links back to its official source.
+
+## Main sections
+- [Events](https://nicosanders.net/events): upcoming community events across the district, updated daily, with calendar (.ics) downloads
+- [Funding & jobs](https://nicosanders.net/funding): open nonprofit grants, student scholarships and job training, with deadlines
+- [Resources](https://nicosanders.net/resources): curated help by topic, including housing, mental health, schools, small business, grants, local government and community organizations
+
+## Facts
+- District 11A is a single-member House of Delegates sub-district entirely within Baltimore County, Maryland.
+- Urgent help: 911 (emergency), 988 (Suicide & Crisis Lifeline), 211 (housing, food, utilities), 311 (Baltimore County non-emergency).
+- Contact: info@nicosanders.net, (410) 803-5821.
+
+## Optional
+- [Sitemap](https://nicosanders.net/sitemap.xml)

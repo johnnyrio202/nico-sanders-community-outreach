@@ -17,6 +17,34 @@ export const dayNum = (s: string) => parseDate(s).getUTCDate();
 export const monthLabel = (s: string) => `${MONTHS[parseDate(s).getUTCMonth()]} ${parseDate(s).getUTCFullYear()}`;
 export const todayET = () => new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York' }).format(new Date());
 
+
+const SOCIAL = [
+  'https://www.facebook.com/nicosandersformddelegate',
+  'https://www.instagram.com/nicosandersformddelegate',
+  'https://x.com/nicosandersformddelegate',
+  'https://www.youtube.com/@nicosandersformddelegate',
+];
+
+/** Site-wide Organization + WebSite entities, emitted on every page so answer engines can resolve who publishes the content. */
+export const siteGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization', '@id': `${SITE}/#org`, name: 'Nico Sanders Community Outreach', url: SITE,
+      logo: `${SITE}/favicon.png`, email: 'info@nicosanders.net', telephone: '+1-410-803-5821', sameAs: SOCIAL,
+      areaServed: ['Owings Mills', 'Randallstown', 'Pikesville', 'Reisterstown', 'Glyndon', 'Mays Chapel'].map((n) => ({ '@type': 'Place', name: `${n}, Maryland` })),
+    },
+    { '@type': 'WebSite', '@id': `${SITE}/#website`, url: SITE, name: 'Nico Sanders Community Outreach', publisher: { '@id': `${SITE}/#org` }, inLanguage: 'en-US' },
+  ],
+};
+
+export const breadcrumbLd = (path: string, crumbs: [string, string][], heading: string) => ({
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [['/', 'Home'] as [string, string], ...crumbs, [path, heading] as [string, string]].map(([h, t], i) => ({
+    '@type': 'ListItem', position: i + 1, name: t, item: SITE + h,
+  })),
+});
+
 export type PageOpts = {
   title: string;
   description: string;
@@ -58,7 +86,7 @@ ${o.noindex ? '<meta name="robots" content="noindex">' : ''}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
-${o.jsonld ? `<script type="application/ld+json">${JSON.stringify(o.jsonld).replace(/</g, '\\u003c')}</script>` : ''}
+${[siteGraph, o.crumbs?.length ? breadcrumbLd(o.path, o.crumbs, o.heading) : null, o.jsonld].filter(Boolean).map((j) => `<script type="application/ld+json">${JSON.stringify(j).replace(/</g, '\\u003c')}</script>`).join('\n')}
 </head>
 <body>
 <div class="top">

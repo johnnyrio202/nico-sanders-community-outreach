@@ -512,3 +512,8 @@ footer a{color:inherit}
 .comm-cols .plain li::before{content:"";display:inline-block;width:8px;height:8px;margin-right:10px;border-radius:50%;background:var(--terra)}
 .comm-cols p{color:var(--soft);font-size:15px}.comm-cols a{color:var(--terra-d)}
 @media(max-width:700px){.comm{padding:40px 0}.pills li{font-size:14px;padding:8px 16px}}
+
+.faq{display:grid;gap:12px;max-width:820px}
+.faq-i{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+.faq-i summary{cursor:pointer;font-weight:700}
+.faq-i p{margin-top:10px;line-height:1.6}
